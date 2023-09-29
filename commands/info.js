@@ -15,34 +15,34 @@ module.exports = {
   .addFields(
     {
       name: "Status",
-      //value: "Botは正常に稼働しています。",
-      //value: "Botはメンテナンス中です。",
-      //value: "ScratchStatsAPIの更新に対応中です。",
-      value: "一部使用できないコマンドがあります。",
+      value: "⭕Botは正常に稼働しています。",
+      //value: "🔄Botはメンテナンス中です。",
+      //value: "🔄ScratchStatsAPIの更新に対応中です。",
+      //value: ":warning:一部使用できないコマンドがあります。",
       inline: false
     },
     {
       name: "stats",
-      value: "このコマンドは使用可能です。",
-      //value: "このコマンドは使用不可です。",
+      value: "⭕このコマンドは使用可能です。",
+      //value: "❌このコマンドは使用不可です。",
       inline: true
     },
-    {
+    /*{
       name: "rank",
-      //value: "このコマンドは使用可能です。",
-      value: "このコマンドは使用不可です。",
+      //value: "⭕このコマンドは使用可能です。",
+      value: "❌このコマンドは使用不可です。",
       inline: true
-    },
+    },*/
     {
       name: "info",
-      value: "このコマンドは使用可能です。",
-      //value: "このコマンドは使用不可です。",
+      value: "⭕このコマンドは使用可能です。",
+      //value: "❌このコマンドは使用不可です。",
       inline: true
     },
     {
       name: "ping",
-      value: "このコマンドは使用可能です。",
-      //value: "このコマンドは使用不可です。",
+      value: "⭕このコマンドは使用可能です。",
+      //value: "❌このコマンドは使用不可です。",
       inline: true
     },
   )
