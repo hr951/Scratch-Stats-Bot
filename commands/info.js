@@ -10,15 +10,16 @@ module.exports = {
     const thumbnail = interaction.client.user.displayAvatarURL();
     
     const embed = new EmbedBuilder()
-    .setTitle("お知らせ / Info")
+    .setTitle("Scratch Stats Bot ver.β")
   .setURL(`https://github.com/hr951/Scratch-Stats-Bot`)
   .addFields(
     {
       name: "Status",
-      value: "⭕Botは正常に稼働しています。",
+      //value: "⭕Botは正常に稼働しています。",
       //value: "🔄Botはメンテナンス中です。",
       //value: "🔄ScratchStatsAPIの更新に対応中です。",
       //value: ":warning:一部使用できないコマンドがあります。",
+      value: ":warning:一部のAPIが停止しています。",
       inline: false
     },
     {
