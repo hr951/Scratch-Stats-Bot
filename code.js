@@ -14,8 +14,8 @@ client.on("ready", () => {
   setInterval(() => {
         client.user.setActivity({
           //name: `再起動しています。少々お待ちください。`
-          name: `メンテナンス中です。動作が不安定になる場合があります。ご了承ください。`
-          //name: `/stats | ${client.guilds.cache.size}サーバー | ${client.ws.ping}ms`
+          //name: `メンテナンス中です。動作が不安定になる場合があります。ご了承ください。`
+          name: `/info | ${client.guilds.cache.size}サーバー | ${client.ws.ping}ms`
         })
     }, 1000)
 });
