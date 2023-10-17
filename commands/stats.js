@@ -75,7 +75,7 @@ module.exports = {
       var joined = joined.substr(0, joined.indexOf('T'));
 
       const embed = new EmbedBuilder()
-        .setTitle(username)
+        .setTitle(`${username}'s Stats`)
         .setURL(`https://scratch.mit.edu/users/${username}`)
         .addFields(
           {
