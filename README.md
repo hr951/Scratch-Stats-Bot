@@ -2,7 +2,12 @@
 
 Scratch Stats Botのコードです。<br>
 
+更新履歴<br>
+2023/10/17 /rankの追加、API復活<br>
 
+
+
+メモ<br>
 Playing : プレイ中<br>
 Streaming : Twitchでライブ<br>
 Listening : 再生中<br>
