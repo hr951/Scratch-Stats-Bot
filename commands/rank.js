@@ -16,7 +16,7 @@ module.exports = {
     var username = interaction.options.getString('username');
     const thumbnail = interaction.client.user.displayAvatarURL();
     const username_2 = username;
-    
+
     const url = `https://scratchdb.lefty.one/v3/user/info/${username}/`;
 
     try {
@@ -45,7 +45,7 @@ module.exports = {
       const following_rank = json.statistics.ranks.following;
       const views_rank = json.statistics.ranks.views;
       const comment_rank = json.statistics.ranks.comments;
-    
+
 
       const embed = new EmbedBuilder()
         .setTitle(`${username}'s Rank`)
@@ -58,32 +58,32 @@ module.exports = {
           },
           {
             name: "Follower Rank",
-            value: `${follower}`,
+            value: `${follower}th`,
             inline: true
           },
           {
             name: "Following Rank",
-            value: `${following}`,
+            value: `${following}th`,
             inline: true
           },
           {
             name: "Comment Rank",
-            value: `${comment}`,
+            value: `${comment}th`,
             inline: true
           },
           {
             name: "Love Rank",
-            value: `${love}`,
+            value: `${love}th`,
             inline: true
           },
           {
             name: "Star Rank",
-            value: `${favorite}`,
+            value: `${favorite}th`,
             inline: true
           },
           {
             name: "View Rank",
-            value: `${views}`,
+            value: `${views}th`,
             inline: true
           },
           {
@@ -93,32 +93,32 @@ module.exports = {
           },
           {
             name: "Follower Rank",
-            value: `${follower_rank}`,
+            value: `${follower_rank}th`,
             inline: true
           },
           {
             name: "Following Rank",
-            value: `${following_rank}`,
+            value: `${following_rank}th`,
             inline: true
           },
           {
             name: "Comment Rank",
-            value: `${comment_rank}`,
+            value: `${comment_rank}th`,
             inline: true
           },
           {
             name: "Love Rank",
-            value: `${love_rank}`,
+            value: `${love_rank}th`,
             inline: true
           },
           {
             name: "Star Rank",
-            value: `${favorite_rank}`,
+            value: `${favorite_rank}th`,
             inline: true
           },
           {
             name: "View Rank",
-            value: `${views_rank}`,
+            value: `${views_rank}th`,
             inline: true
           },
         )
