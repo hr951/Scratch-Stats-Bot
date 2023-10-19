@@ -42,15 +42,17 @@ module.exports = {
       // ユーザー情報から必要なデータを取得
       const id = json_2.id;
       const username = json_2.username;
-      var followers = element.value;
-      var following = json_2.statistics.following;
-      var loves = json_2.statistics.loves;
-      var favorites = json_2.statistics.favorites;
-      var views = json_2.statistics.views;
       var status = json_2.status;
+      var comments = json_3.count;
+      var followers = element.value;
       var country = json_2.country;
       var joined = json_2.joined;
-      var comments = json_3.count;
+      if (status !== "New Scratcher") {
+        var following = json_2.statistics.following;
+        var loves = json_2.statistics.loves;
+        var favorites = json_2.statistics.favorites;
+        var views = json_2.statistics.views;
+      }
       //console.log(`Username:${username}\nID:${id}\nFollowerCount:${followers}\nFollowingCount:${following}\nComenntCount:${comments}\nLoves:${loves}\nFavorites:${favorites}\nViews:${views}\nStatus:${status}\nCountry:${country}\njoined:${joined}`)
       console.log(`--------------------------------------------\nUsername:${username}\nID:${id}\nFollowerCount:${followers}\nStatus:${status}\nCountry:${country}`)
 
