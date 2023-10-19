@@ -33,6 +33,7 @@ module.exports = {
       const id = json.id;
       const username = json.username;
       var country = json.country;
+      const status = json.status;
       const love = json.statistics.ranks.country.loves;
       const favorite = json.statistics.ranks.country.favorites;
       const follower = json.statistics.ranks.country.followers;
@@ -45,8 +46,24 @@ module.exports = {
       const following_rank = json.statistics.ranks.following;
       const views_rank = json.statistics.ranks.views;
       const comment_rank = json.statistics.ranks.comments;
+      if ( status === "New Scratcher" ){
+        const love = 0
+        const favorite = 0
+        const follower = 0
+        const following = 0
+        const views = 0
+        const comment = 0
+        const love_rank = 0
+        const favorite_rank = 0
+        const follower_rank = 0
+        const following_rank = 0
+        const views_rank = 0
+        const comment_rank = 0
+        console.log(status)
+      }
+      
 
-
+      
       const embed = new EmbedBuilder()
         .setTitle(`${username}'s Rank`)
         .setURL(`https://scratch.mit.edu/users/${username}`)
@@ -130,14 +147,18 @@ module.exports = {
           iconURL: thumbnail,
         })
         .setTimestamp();
+        if (status !== "New Scratcher" ){
       await interaction.reply({ embeds: [embed] })
+        }else{
+      await interaction.reply({ content: 'New ScratcherのRankは取得できません。', ephemeral: true });
+        }
 
     } catch (error) {
       // エラーが発生したらコンソールに出力
       console.error(error);
 
       // エラーメッセージを返信
-      await interaction.reply({ content: 'ScratchStatsAPIからユーザー情報を取得できませんでした', ephemeral: true });
+      await interaction.reply({ content: 'ScratchStatsAPIからRankを取得できませんでした。', ephemeral: true });
     }
   },
 
