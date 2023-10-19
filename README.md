@@ -4,6 +4,7 @@ Scratch Stats Botのコードです。<br>
 
 更新履歴<br>
 2023/10/17 /rankの追加、API復活<br>
+2023/10/19 stats、rankがNew Scratcherに対応していなかった問題を修正<br>
 
 
 
