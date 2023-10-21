@@ -33,37 +33,79 @@ module.exports = {
       const id = json.id;
       const username = json.username;
       var country = json.country;
-      const status = json.status;
-      const love = json.statistics.ranks.country.loves;
-      const favorite = json.statistics.ranks.country.favorites;
-      const follower = json.statistics.ranks.country.followers;
-      const following = json.statistics.ranks.country.following;
-      const views = json.statistics.ranks.country.views;
-      const comment = json.statistics.ranks.country.comments;
-      const love_rank = json.statistics.ranks.loves;
-      const favorite_rank = json.statistics.ranks.favorites;
-      const follower_rank = json.statistics.ranks.followers;
-      const following_rank = json.statistics.ranks.following;
-      const views_rank = json.statistics.ranks.views;
-      const comment_rank = json.statistics.ranks.comments;
+      var status = json.status;
+      var love = json.statistics.ranks.country.loves;
+      var favorite = json.statistics.ranks.country.favorites;
+      var follower = json.statistics.ranks.country.followers;
+      var following = json.statistics.ranks.country.following;
+      var views = json.statistics.ranks.country.views;
+      var comment = json.statistics.ranks.country.comments;
+      var love_rank = json.statistics.ranks.loves;
+      var favorite_rank = json.statistics.ranks.favorites;
+      var follower_rank = json.statistics.ranks.followers;
+      var following_rank = json.statistics.ranks.following;
+      var views_rank = json.statistics.ranks.views;
+      var comment_rank = json.statistics.ranks.comments;
       if ( status === "New Scratcher" ){
-        const love = 0
-        const favorite = 0
-        const follower = 0
-        const following = 0
-        const views = 0
-        const comment = 0
-        const love_rank = 0
-        const favorite_rank = 0
-        const follower_rank = 0
-        const following_rank = 0
-        const views_rank = 0
-        const comment_rank = 0
+        var love = 0
+        var favorite = 0
+        var follower = 0
+        var following = 0
+        var views = 0
+        var comment = 0
+        var love_rank = 0
+        var favorite_rank = 0
+        var follower_rank = 0
+        var following_rank = 0
+        var views_rank = 0
+        var comment_rank = 0
         console.log(status)
       }
-      
 
+      // 数値を序数形式に変換する関数
+      function ordinal(n) {
+        // 整数でない場合はエラーを返す
+        if (!Number.isInteger(n)) {
+          return "Error: n is not an integer.";
+        }
+        // 末尾の数字
+        let lastDigit = n % 10;
+        // 末尾から2桁目の数字
+        let secondLastDigit = Math.floor(n / 10) % 10;
+        // 末尾が1,2,3以外はth
+        if (lastDigit > 3 || lastDigit === 0 || secondLastDigit === 1) {
+          return n + "th";
+        }
+        // 末尾が1はst
+        if (lastDigit === 1) {
+          return n + "st";
+        }
+        // 末尾が2はnd
+        if (lastDigit === 2) {
+          return n + "nd";
+        }
+        // 末尾が3はrd
+        if (lastDigit === 3) {
+          return n + "rd";
+        }
+      }
       
+    var love = ordinal(love);
+    var favorite = ordinal(favorite);
+    var follower = ordinal(follower);
+    var following = ordinal(following);
+    var views = ordinal(views);
+    var comment = ordinal(comment);
+    var love_rank = ordinal(love_rank);
+    var favorite_rank = ordinal(favorite_rank);
+    var follower_rank = ordinal(follower_rank);
+    var following_rank = ordinal(following_rank);
+    var views_rank = ordinal(views_rank);
+    var comment_rank = ordinal(comment_rank);
+    
+
+
+
       const embed = new EmbedBuilder()
         .setTitle(`${username}'s Rank`)
         .setURL(`https://scratch.mit.edu/users/${username}`)
@@ -75,32 +117,32 @@ module.exports = {
           },
           {
             name: "Follower Rank",
-            value: `${follower}th`,
+            value: `${follower}`,
             inline: true
           },
           {
             name: "Following Rank",
-            value: `${following}th`,
+            value: `${following}`,
             inline: true
           },
           {
             name: "Comment Rank",
-            value: `${comment}th`,
+            value: `${comment}`,
             inline: true
           },
           {
             name: "Love Rank",
-            value: `${love}th`,
+            value: `${love}`,
             inline: true
           },
           {
             name: "Star Rank",
-            value: `${favorite}th`,
+            value: `${favorite}`,
             inline: true
           },
           {
             name: "View Rank",
-            value: `${views}th`,
+            value: `${views}`,
             inline: true
           },
           {
@@ -110,32 +152,32 @@ module.exports = {
           },
           {
             name: "Follower Rank",
-            value: `${follower_rank}th`,
+            value: `${follower_rank}`,
             inline: true
           },
           {
             name: "Following Rank",
-            value: `${following_rank}th`,
+            value: `${following_rank}`,
             inline: true
           },
           {
             name: "Comment Rank",
-            value: `${comment_rank}th`,
+            value: `${comment_rank}`,
             inline: true
           },
           {
             name: "Love Rank",
-            value: `${love_rank}th`,
+            value: `${love_rank}`,
             inline: true
           },
           {
             name: "Star Rank",
-            value: `${favorite_rank}th`,
+            value: `${favorite_rank}`,
             inline: true
           },
           {
             name: "View Rank",
-            value: `${views_rank}th`,
+            value: `${views_rank}`,
             inline: true
           },
         )
@@ -147,18 +189,22 @@ module.exports = {
           iconURL: thumbnail,
         })
         .setTimestamp();
-        if (status !== "New Scratcher" ){
       await interaction.reply({ embeds: [embed] })
-        }else{
-      await interaction.reply({ content: 'New ScratcherのRankは取得できません。', ephemeral: true });
-        }
-
+      
     } catch (error) {
       // エラーが発生したらコンソールに出力
       console.error(error);
 
+      const response = await fetch(url);
+      const json = await response.json();
+      const status = json.status;
+      
+      if(status !== "New Scratcher"){
       // エラーメッセージを返信
       await interaction.reply({ content: 'ScratchStatsAPIからRankを取得できませんでした。', ephemeral: true });
+      }else{
+        await interaction.reply({ content: 'New ScratcherのRankは取得できません。', ephemeral: true });
+      }
     }
   },
 
