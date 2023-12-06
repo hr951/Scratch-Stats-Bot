@@ -12,17 +12,17 @@ const client = new Client({
 const token = process.env['DISCORD_BOT_TOKEN']
 
 client.on('ready', () => {
-setInterval(() => {
-client.user.setPresence({
-  activities: [
-    {
-      name: `/info | ${client.guilds.cache.size}サーバー | ${client.ws.ping}ms`,
-      type: ActivityType.Playing
-    }
-  ],
-  status: 'online'//online : いつもの, dnd : 赤い奴, idle : 月のやつ, invisible : 表示なし
-});
-}, 1000)
+  setInterval(() => {
+    client.user.setPresence({
+      activities: [
+        {
+          name: `/info | ${client.guilds.cache.size}サーバー | ${client.ws.ping}ms`,
+          type: ActivityType.Playing
+        }
+      ],
+      status: 'dnd'//online : いつもの, dnd : 赤い奴, idle : 月のやつ, invisible : 表示なし
+    });
+  }, 1000)
 })
 
 //ここから
@@ -59,5 +59,7 @@ client.on('interactionCreate', async interaction => {
     await interaction.reply({ content: 'error', ephemeral: true });
   }
 });
+
+
 
 client.login(token);
