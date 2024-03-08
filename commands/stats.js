@@ -47,7 +47,7 @@ module.exports = {
       var followers = element.value;
       var country = json_2.country;
       var joined = json_2.joined;
-      if (status !== "New Scratcher") {
+      if (status !== "New Scratcher" && json_2.statistics) {
         var following = json_2.statistics.following;
         var loves = json_2.statistics.loves;
         var favorites = json_2.statistics.favorites;
@@ -57,22 +57,22 @@ module.exports = {
       console.log(`--------------------------------------------\nUsername:${username}\nID:${id}\nFollowerCount:${followers}\nStatus:${status}\nCountry:${country}`)
 
       if (!followers) {
-        var followers = "0";
+        var followers = "Not Found";
       }
       if (!following) {
-        var following = "？";
+        var following = "Not Found";
       }
       if (!comments) {
-        var comments = "0";
+        var comments = "Not Found";
       }
       if (!loves) {
-        var loves = "？";
+        var loves = "Not Found";
       }
       if (!favorites) {
-        var favorites = "？";
+        var favorites = "Not Found";
       }
       if (!views) {
-        var views = "？";
+        var views = "Not Found";
       }
       var joined = joined.substr(0, joined.indexOf('T'));
 
