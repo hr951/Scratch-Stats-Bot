@@ -34,6 +34,7 @@ module.exports = {
       const username = json.username;
       var country = json.country;
       var status = json.status;
+      if(json.statistics){
       var love = json.statistics.ranks.country.loves;
       var favorite = json.statistics.ranks.country.favorites;
       var follower = json.statistics.ranks.country.followers;
@@ -46,19 +47,20 @@ module.exports = {
       var following_rank = json.statistics.ranks.following;
       var views_rank = json.statistics.ranks.views;
       var comment_rank = json.statistics.ranks.comments;
+      }
       if ( status === "New Scratcher" ){
-        var love = 0
-        var favorite = 0
-        var follower = 0
-        var following = 0
-        var views = 0
-        var comment = 0
-        var love_rank = 0
-        var favorite_rank = 0
-        var follower_rank = 0
-        var following_rank = 0
-        var views_rank = 0
-        var comment_rank = 0
+        var love = "Not Found";
+        var favorite =  "Not Found";
+        var follower =  "Not Found";
+        var following =  "Not Found";
+        var views =  "Not Found";
+        var comment =  "Not Found";
+        var love_rank =  "Not Found";
+        var favorite_rank =  "Not Found";
+        var follower_rank =  "Not Found";
+        var following_rank =  "Not Found";
+        var views_rank =  "Not Found";
+        var comment_rank =  "Not Found";
         console.log(status)
       }
 
@@ -66,7 +68,7 @@ module.exports = {
       function ordinal(n) {
         // 整数でない場合はエラーを返す
         if (!Number.isInteger(n)) {
-          return "Error: n is not an integer.";
+          return "Not Found";
         }
         // 末尾の数字
         let lastDigit = n % 10;
