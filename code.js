@@ -24,6 +24,9 @@ client.on('ready', () => {
       status: 'dnd'//online : いつもの, dnd : 赤い奴, idle : 月のやつ, invisible : 表示なし
     });
   }, 1000)
+  setInterval(() => {
+    client.channels.cache.get("1215637785873227887").send("!setting")
+  }, 60000)
 })
 
 //ここから
@@ -130,7 +133,5 @@ client.on('messageCreate', async message => {
       }
       }}
     });
-      
-
 
 client.login(token);
