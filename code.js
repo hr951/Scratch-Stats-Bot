@@ -21,7 +21,7 @@ client.on('ready', () => {
           type: ActivityType.Playing
         }
       ],
-      status: 'dnd'//online : いつもの, dnd : 赤い奴, idle : 月のやつ, invisible : 表示なし
+      status: `${global.online_status}`//online : いつもの, dnd : 赤い奴, idle : 月のやつ, invisible : 表示なし
     });
   }, 1000)
   setInterval(() => {
@@ -83,18 +83,23 @@ client.on('messageCreate', async message => {
       if (setting_status.content.split("\n")[1].match(/@/)){
         const setting_status_main = setting_status.content.split("\n")[1];
         global.status = setting_status_main.slice(0, -1);
+        global.online_status = "online";
       }else if (setting_status.content.split("\n")[2].match(/@/)){
         const setting_status_main = setting_status.content.split("\n")[2];
         global.status = setting_status_main.slice(0, -1);
+        global.online_status = "dnd";
       }else if (setting_status.content.split("\n")[3].match(/@/)){
         const setting_status_main = setting_status.content.split("\n")[3];
         global.status = setting_status_main.slice(0, -1);
+        global.online_status = "dnd";
       }else if (setting_status.content.split("\n")[4].match(/@/)){
         const setting_status_main = setting_status.content.split("\n")[4];
         global.status = setting_status_main.slice(0, -1);
+        global.online_status = "dnd";
       }else if (setting_status.content.split("\n")[5].match(/@/)){
         const setting_status_main = setting_status.content.split("\n")[5];
         global.status = setting_status_main.slice(0, -1);
+        global.online_status = "dnd";
       }
       if (setting_stats.content.split("\n")[1].match(/@/)){
         const setting_stats_main = setting_stats.content.split("\n")[1];
