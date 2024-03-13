@@ -13,62 +13,89 @@ module.exports = {
 
   async execute(interaction) {
 
-    var username = interaction.options.getString('username');
+    const username = interaction.options.getString('username');
     const thumbnail = interaction.client.user.displayAvatarURL();
     const username_2 = username;
+    var count_stats = 0;
+    var views = 0;
+    var stars = 0;
+    var hearts = 0;
+    var projects = 0;
+    var count_project = 0;
+    var count_follower = 0;
+    var followers = 0;
+    var count_following = 0;
+    var followings = 0;
 
-    const url = `https://scratchdb.lefty.one/v3/user/graph/${username}/followers?format=json`;
     const url_2 = `https://scratchdb.lefty.one/v3/user/info/${username}/`;
-    const url_3 = `https://api.scratch.mit.edu/users/${username}/messages/count`;
 
     try {
-      // ユーザー情報を取得するリクエストを送信
+      await interaction.reply("Now Loading...")
+      
+      do{
+      const url = `https://api.scratch.mit.edu/users/${username_2}/following/?limit=40&offset=${count_following}`;
+      
       const response = await fetch(url);
-      // レスポンスをJSONに変換
       const json = await response.json();
-      const element = json[0];
-      // ユーザー情報が存在しなければエラーメッセージを返す
-      if (json.error) {
-        interaction.reply({ content: `Scratchのユーザー「${username_2}」は存在しません。`, ephemeral: true });
-        return;
-      }
+      count_following = 40 + count_following;
+      var followings = json.length + followings;
+      global.json_length = json.length;
+      } while (global.json_length > 0);
 
       const response_2 = await fetch(url_2);
       const json_2 = await response_2.json();
+      if (json_2.error) {
+        interaction.reply({ content: `Scratchのユーザー「${username_2}」は存在しません。`, ephemeral: true });
+        return;
+      }
+      
+      do{
+      const url_3 = `https://api.scratch.mit.edu/users/${username_2}/followers/?limit=40&offset=${count_follower}`;
 
       const response_3 = await fetch(url_3);
       const json_3 = await response_3.json();
+        count_follower = 40 + count_follower;
+      var followers = json_3.length + followers;
+      global.json_3_length = json_3.length;
+      } while (global.json_3_length > 0);
+      
+      do{
+      const url_4 = `https://api.scratch.mit.edu/users/${username_2}/projects?limit=40&offset=${count_project}`;
+        count_stats = 0;
+      
+      const response_4 = await fetch(url_4);
+      const json_4 = await response_4.json();
+      for(let i = 0; i < json_4.length ; i++) {
+      var views = json_4[count_stats].stats.views + views;
+      var stars = json_4[count_stats].stats.favorites + stars;
+      var hearts = json_4[count_stats].stats.loves + hearts;
+        count_stats ++;
+      }
+      count_project = 40 + count_project;
+      var projects = json_4.length + projects;
+      global.json_4_length = json_4.length;
+      } while (global.json_4_length > 0);
 
       // ユーザー情報から必要なデータを取得
       const id = json_2.id;
       const username = json_2.username;
       var status = json_2.status;
-      var comments = json_3.count;
-      var followers = element.value;
       var country = json_2.country;
       var joined = json_2.joined;
-      if (status !== "New Scratcher" && json_2.statistics) {
-        var following = json_2.statistics.following;
-        var loves = json_2.statistics.loves;
-        var favorites = json_2.statistics.favorites;
-        var views = json_2.statistics.views;
-      }
-      //console.log(`Username:${username}\nID:${id}\nFollowerCount:${followers}\nFollowingCount:${following}\nComenntCount:${comments}\nLoves:${loves}\nFavorites:${favorites}\nViews:${views}\nStatus:${status}\nCountry:${country}\njoined:${joined}`)
-      console.log(`--------------------------------------------\nUsername:${username}\nID:${id}\nFollowerCount:${followers}\nStatus:${status}\nCountry:${country}`)
 
       if (!followers) {
         var followers = "Not Found";
       }
-      if (!following) {
-        var following = "Not Found";
+      if (!followings) {
+        var followings = "Not Found";
       }
-      if (!comments) {
-        var comments = "Not Found";
+      if (!projects) {
+        var projects = "Not Found";
       }
-      if (!loves) {
-        var loves = "Not Found";
+      if (!hearts) {
+        var hearts = "Not Found";
       }
-      if (!favorites) {
+      if (!stars) {
         var favorites = "Not Found";
       }
       if (!views) {
@@ -91,7 +118,7 @@ module.exports = {
             inline: true
           },
           {
-            name: "Joined",
+            name: "Joined (Y/M/D)",
             value: `${joined}`,
             inline: true
           },
@@ -102,22 +129,22 @@ module.exports = {
           },
           {
             name: "Following Count",
-            value: `${following}`,
+            value: `${followings}`,
             inline: true
           },
           {
-            name: "Unread Messages",
-            value: `${comments}`,
+            name: "Project Count",
+            value: `${projects}`,
             inline: true
           },
           {
             name: "Stars",
-            value: `${favorites}`,
+            value: `${stars}`,
             inline: true
           },
           {
             name: "Hearts",
-            value: `${loves}`,
+            value: `${hearts}`,
             inline: true
           },
           {
@@ -134,7 +161,8 @@ module.exports = {
           iconURL: thumbnail,
         })
         .setTimestamp();
-      await interaction.reply({ embeds: [embed] })
+      await interaction.editReply("Loading Completed")
+      await interaction.editReply({ embeds: [embed] })
 
     } catch (error) {
       // エラーが発生したらコンソールに出力
