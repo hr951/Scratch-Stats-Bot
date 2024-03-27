@@ -30,9 +30,17 @@ module.exports = {
     const url_2 = `https://scratchdb.lefty.one/v3/user/info/${username}/`;
 
     try {
-      await interaction.reply("Now Loading...")
       
-      do{
+      const response_2 = await fetch(url_2);
+      const json_2 = await response_2.json();
+      if (json_2.error) {
+        interaction.reply({ content: `Scratchのユーザー「${username_2}」は存在しません。`, ephemeral: true });
+        return;
+      }else{
+         interaction.reply("Now Loading...")
+      }
+      
+      do{        
       const url = `https://api.scratch.mit.edu/users/${username_2}/following/?limit=40&offset=${count_following}`;
       
       const response = await fetch(url);
@@ -41,13 +49,6 @@ module.exports = {
       var followings = json.length + followings;
       global.json_length = json.length;
       } while (global.json_length > 0);
-
-      const response_2 = await fetch(url_2);
-      const json_2 = await response_2.json();
-      if (json_2.error) {
-        interaction.reply({ content: `Scratchのユーザー「${username_2}」は存在しません。`, ephemeral: true });
-        return;
-      }
       
       do{
       const url_3 = `https://api.scratch.mit.edu/users/${username_2}/followers/?limit=40&offset=${count_follower}`;
@@ -161,7 +162,7 @@ module.exports = {
           iconURL: thumbnail,
         })
         .setTimestamp();
-      await interaction.editReply("Loading Completed")
+      await interaction.editReply("Loading Completed !")
       await interaction.editReply({ embeds: [embed] })
 
     } catch (error) {
