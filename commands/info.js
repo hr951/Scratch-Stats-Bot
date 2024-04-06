@@ -10,7 +10,7 @@ module.exports = {
     const thumbnail = interaction.client.user.displayAvatarURL();
 
     const embed = new EmbedBuilder()
-      .setTitle("Scratch Stats Bot ver.1.0.0")
+      .setTitle("Scratch Stats Bot ver.2.2")
       .setURL(`https://github.com/hr951/Scratch-Stats-Bot`)
       .addFields(
         {
