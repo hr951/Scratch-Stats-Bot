@@ -11,7 +11,7 @@ Scratch Stats Botのコードです。<br>
 2024/03/11 infoの更新を再起動時のみに変更<br>
 2024/03/13 statsの内容の一部変更、使用するAPIを変更<br>
 2024/04/06 Scracth Stats Botのバージョンを設定、バージョンの再計算<br>
-
+2024/04/21 statsのバグ(永遠ロード)を修正、statsのStatusがScratcherかScratch Teamに変更、explore(傾向)の実装
 
 
 メモ<br>
