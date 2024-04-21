@@ -19,15 +19,18 @@ module.exports = {
     var language = interaction.options.getString('languages');
     const thumbnail = interaction.client.user.displayAvatarURL();
 
-    const url = `https://api.scratch.mit.edu/explore/projects?limit=1&offset=0&language=${language}&mode=trending`;
+    const url = `https://api.scratch.mit.edu/explore/projects?limit=5&offset=0&language=${language}&mode=trending`;
 
     try {
+      
+      //interaction.deferReply();
+      
       // ユーザー情報を取得するリクエストを送信
       const response = await fetch(url);
       const json = await response.json();
       // ユーザー情報が存在しなければエラーメッセージを返す
       if (json.error) {
-        interaction.reply({ content: `傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。`, ephemeral: true });
+        interaction.editReply({ content: `傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。`, ephemeral: true });
         return;
       }
 
@@ -36,53 +39,53 @@ module.exports = {
         // レスポンスをJSON形式に変換する
         .then(response => response.json())
         // JSONデータをコンソールに出力する
-        .then(data => console.log(data));
+        //.then(data => console.log(data));
 
 
       // ユーザー情報から必要なデータを取得
-      const image = json.image;
-      const title1 = json.title;
-      const id1 = json.id;
-      const username1 = "hi_ro951";//json.author.id;
-      const views1 = json.stats.views;
-      const loves1 = json.stats.loves;
-      const favorites1 = json.stats.favorites;
+      const image = json[0].image;
+      const title1 = json[0].title;
+      const id1 = json[0].id;
+      const username1 = json[0].author.id;
+      const views1 = json[0].stats.views;
+      const loves1 = json[0].stats.loves;
+      const favorites1 = json[0].stats.favorites;
 
-      const     title2 = json.title;
-      const        id2 = json.id;
-      const  username2 = json.author.username;
-      const     views2 = json.stats.views;
-      const     loves2 = json.stats.loves;
-      const favorites2 = json.stats.favorites;
+      const     title2 = json[1].title;
+      const        id2 = json[1].id;
+      const  username2 = json[1].author.username;
+      const     views2 = json[1].stats.views;
+      const     loves2 = json[1].stats.loves;
+      const favorites2 = json[1].stats.favorites;
 
-      const     title3 = json.title;
-      const        id3 = json.id;
-      const  username3 = json.author.username;
-      const     views3 = json.stats.views;
-      const     loves3 = json.stats.loves;
-      const favorites3 = json.stats.favorites;
+      const     title3 = json[2].title;
+      const        id3 = json[2].id;
+      const  username3 = json[2].author.username;
+      const     views3 = json[2].stats.views;
+      const     loves3 = json[2].stats.loves;
+      const favorites3 = json[2].stats.favorites;
 
-      const     title4 = json.title;
-      const        id4 = json.id;
-      const  username4 = json.author.username;
-      const     views4 = json.stats.views;
-      const     loves4 = json.stats.loves;
-      const favorites4 = json.stats.favorites;
+      const     title4 = json[3].title;
+      const        id4 = json[3].id;
+      const  username4 = json[3].author.username;
+      const     views4 = json[3].stats.views;
+      const     loves4 = json[3].stats.loves;
+      const favorites4 = json[3].stats.favorites;
 
-      const     title5 = json.title;
-      const        id5 = json.id;
-      const  username5 = json.author.username;
-      const     views5 = json.stats.views;
-      const     loves5 = json.stats.loves;
-      const favorites5 = json.stats.favorites;
+      const     title5 = json[4].title;
+      const        id5 = json[4].id;
+      const  username5 = json[4].author.username;
+      const     views5 = json[4].stats.views;
+      const     loves5 = json[4].stats.loves;
+      const favorites5 = json[4].stats.favorites;
 
       const embed = new EmbedBuilder()
         .setTitle(`Explore / 傾向`)
         .setURL(`https://scratch.mit.edu/explore/projects/all/trending`)
         .addFields(
           {
-            name: `__**[${title1}](https://scratch.mit.edu/projects/${id1}/)**__`,
-            value: `Made by __[${username1}](https://scratch.mit.edu/users/${username1}/)__`,
+            name: ` `,
+            value: `**[${title1}](https://scratch.mit.edu/projects/${id1}/)**\nMade by __[${username1}](https://scratch.mit.edu/users/${username1}/)__`,
             inline: false
           },
           {
@@ -101,8 +104,8 @@ module.exports = {
             inline: true
           },
           {
-            name: `__**[${title2}](https://scratch.mit.edu/projects/${id2}/)**__`,
-            value: `Made by __[${username2}](https://scratch.mit.edu/users/${username2}/)__`,
+            name: ` `,
+            value: `**[${title2}](https://scratch.mit.edu/projects/${id2}/)**\nMade by __[${username2}](https://scratch.mit.edu/users/${username2}/)__`,
             inline: false
           },
           {
@@ -121,8 +124,8 @@ module.exports = {
             inline: true
           },
           {
-            name: `__**[${title3}](https://scratch.mit.edu/projects/${id3}/)**__`,
-            value: `Made by __[${username3}](https://scratch.mit.edu/users/${username3}/)__`,
+            name: ` `,
+            value: `**[${title3}](https://scratch.mit.edu/projects/${id3}/)**\nMade by __[${username3}](https://scratch.mit.edu/users/${username3}/)__`,
             inline: false
           },
           {
@@ -141,8 +144,8 @@ module.exports = {
             inline: true
           },
           {
-            name: `__**[${title4}](https://scratch.mit.edu/projects/${id4}/)**__`,
-            value: `Made by __[${username4}](https://scratch.mit.edu/users/${username4}/)__`,
+            name: ` `,
+            value: `**[${title4}](https://scratch.mit.edu/projects/${id4}/)**\nMade by __[${username4}](https://scratch.mit.edu/users/${username4}/)__`,
             inline: false
           },
           {
@@ -161,8 +164,8 @@ module.exports = {
             inline: true
           },
           {
-            name: `__**[${title5}](https://scratch.mit.edu/projects/${id5}/)**__`,
-            value: `Made by __[${username5}](https://scratch.mit.edu/users/${username5}/)__`,
+            name: ` `,
+            value: `**[${title5}](https://scratch.mit.edu/projects/${id5}/)**\nMade by __[${username5}](https://scratch.mit.edu/users/${username5}/)__`,
             inline: false
           },
           {
@@ -195,7 +198,7 @@ module.exports = {
       // エラーが発生したらコンソールに出力
       console.error(error);
       // エラーメッセージを返信
-      await interaction.reply({ content: 'APIから傾向を取得できませんでした。', ephemeral: true });
+      await interaction.editReply({ content: 'APIから傾向を取得できませんでした。', ephemeral: true });
 
     }
   },
