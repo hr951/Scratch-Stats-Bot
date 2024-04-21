@@ -27,18 +27,19 @@ module.exports = {
     var count_following = 0;
     var followings = 0;
 
-    const url_2 = `https://scratchdb.lefty.one/v3/user/info/${username}/`;
+    const url_2 = `https://api.scratch.mit.edu/users/${username_2}`;
 
     try {
       
+      //interaction.reply("Now Loading...")
+      interaction.deferReply();
+      
       const response_2 = await fetch(url_2);
       const json_2 = await response_2.json();
-      if (json_2.error) {
-        interaction.reply({ content: `Scratchのユーザー「${username_2}」は存在しません。`, ephemeral: true });
+      if (json_2.code === "NotFound") {
+        interaction.editReply(`Scratchのユーザー「${username_2}」は存在しません。`);
         return;
-      }else{
-         interaction.reply("Now Loading...")
-      }
+      };
       
       do{        
       const url = `https://api.scratch.mit.edu/users/${username_2}/following/?limit=40&offset=${count_following}`;
@@ -80,9 +81,14 @@ module.exports = {
       // ユーザー情報から必要なデータを取得
       const id = json_2.id;
       const username = json_2.username;
-      var status = json_2.status;
-      var country = json_2.country;
-      var joined = json_2.joined;
+      var country = json_2.profile.country;
+      var joined = json_2.history.joined;
+      
+      if(json_2.scratchteam){
+        var status = "Scratch Team";
+      }else{
+        var status = "Scratcher";
+      }
 
       if (!followers) {
         var followers = "Not Found";
@@ -97,7 +103,7 @@ module.exports = {
         var hearts = "Not Found";
       }
       if (!stars) {
-        var favorites = "Not Found";
+        var stars = "Not Found";
       }
       if (!views) {
         var views = "Not Found";
@@ -162,7 +168,8 @@ module.exports = {
           iconURL: thumbnail,
         })
         .setTimestamp();
-      await interaction.editReply("Loading Completed !")
+      
+      //await interaction.editReply("Loading Completed !")
       await interaction.editReply({ embeds: [embed] })
 
     } catch (error) {
