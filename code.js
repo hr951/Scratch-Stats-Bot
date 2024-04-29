@@ -13,6 +13,7 @@ const client = new Client({
 const token = process.env['DISCORD_BOT_TOKEN']
 
 client.on('ready', () => {
+  client.channels.cache.get("1215637785873227887").send("!setting")
   setInterval(() => {
     client.user.setPresence({
       activities: [
@@ -24,9 +25,6 @@ client.on('ready', () => {
       status: `${global.online_status}`//online : いつもの, dnd : 赤い奴, idle : 月のやつ, invisible : 表示なし
     });
   }, 1000)
-  setInterval(() => {
-    client.channels.cache.get("1215637785873227887").send("!setting")
-  }, 60000)
 })
 
 //ここから
@@ -75,11 +73,13 @@ client.on('messageCreate', async message => {
        const setting_explore = await message.channel.messages.fetch("1215639888473489429");
        const setting_info = await message.channel.messages.fetch("1215639920694009916");
        const setting_ping = await message.channel.messages.fetch("1215639950461243412");
-      const reply = await message.reply("設定が完了しました。");
+       const reply = await message.reply("設定が完了しました。");
+       const delset = await message.channel.messages.fetch({after : "1215672856076222505"});
+       //message.channel.bulkDelete(delset);      
       setTimeout(() => {
         message.delete();
         reply.delete();
-      },5000);
+      },2000);
       if (setting_status.content.split("\n")[1].match(/@/)){
         const setting_status_main = setting_status.content.split("\n")[1];
         global.status = setting_status_main.slice(0, -1);
