@@ -85,7 +85,7 @@ module.exports = {
         .addFields(
           {
             name: ` `,
-            value: `**[${title1}](https://scratch.mit.edu/projects/${id1}/)**\nMade by __[${username1}](https://scratch.mit.edu/users/${username1}/)__`,
+            value: `**[${title1}](https://scratch.mit.edu/projects/${id1}/)**`,
             inline: false
           },
           {
@@ -94,18 +94,23 @@ module.exports = {
             inline: true
           },
           {
-            name: `♥${loves1}`,
+            name: `❤️${loves1}`,
             value: " ",
             inline: true
           },
           {
-            name: `★${favorites1}`,
+            name: `⭐${favorites1}`,
             value: " ",
             inline: true
           },
           {
             name: ` `,
-            value: `**[${title2}](https://scratch.mit.edu/projects/${id2}/)**\nMade by __[${username2}](https://scratch.mit.edu/users/${username2}/)__`,
+            value: `Made by __[${username1}](https://scratch.mit.edu/users/${username1}/)__\n**------------------------------------------------------**`,
+            inline: false
+          },
+          {
+            name: ` `,
+            value: `**[${title2}](https://scratch.mit.edu/projects/${id2}/)**`,
             inline: false
           },
           {
@@ -114,18 +119,23 @@ module.exports = {
             inline: true
           },
           {
-            name: `♥${loves2}`,
+            name: `❤️${loves2}`,
             value: " ",
             inline: true
           },
           {
-            name: `★${favorites2}`,
+            name: `⭐${favorites2}`,
             value: " ",
             inline: true
           },
           {
             name: ` `,
-            value: `**[${title3}](https://scratch.mit.edu/projects/${id3}/)**\nMade by __[${username3}](https://scratch.mit.edu/users/${username3}/)__`,
+            value: `Made by __[${username2}](https://scratch.mit.edu/users/${username2}/)__\n**------------------------------------------------------**`,
+            inline: false
+          },
+          {
+            name: ` `,
+            value: `**[${title3}](https://scratch.mit.edu/projects/${id3}/)**`,
             inline: false
           },
           {
@@ -134,18 +144,23 @@ module.exports = {
             inline: true
           },
           {
-            name: `♥${loves3}`,
+            name: `❤️${loves3}`,
             value: " ",
             inline: true
           },
           {
-            name: `★${favorites3}`,
+            name: `⭐${favorites3}`,
             value: " ",
             inline: true
           },
           {
             name: ` `,
-            value: `**[${title4}](https://scratch.mit.edu/projects/${id4}/)**\nMade by __[${username4}](https://scratch.mit.edu/users/${username4}/)__`,
+            value: `Made by __[${username3}](https://scratch.mit.edu/users/${username3}/)__\n**------------------------------------------------------**`,
+            inline: false
+          },
+          {
+            name: ` `,
+            value: `**[${title4}](https://scratch.mit.edu/projects/${id4}/)**`,
             inline: false
           },
           {
@@ -154,18 +169,23 @@ module.exports = {
             inline: true
           },
           {
-            name: `♥${loves4}`,
+            name: `❤️${loves4}`,
             value: " ",
             inline: true
           },
           {
-            name: `★${favorites4}`,
+            name: `⭐${favorites4}`,
             value: " ",
             inline: true
           },
           {
             name: ` `,
-            value: `**[${title5}](https://scratch.mit.edu/projects/${id5}/)**\nMade by __[${username5}](https://scratch.mit.edu/users/${username5}/)__`,
+            value: `Made by __[${username4}](https://scratch.mit.edu/users/${username4}/)__\n**------------------------------------------------------**`,
+            inline: false
+          },
+          {
+            name: ` `,
+            value: `**[${title5}](https://scratch.mit.edu/projects/${id5}/)**`,
             inline: false
           },
           {
@@ -174,14 +194,19 @@ module.exports = {
             inline: true
           },
           {
-            name: `♥${loves5}`,
+            name: `❤️${loves5}`,
             value: " ",
             inline: true
           },
           {
-            name: `★${favorites5}`,
+            name: `⭐${favorites5}`,
             value: " ",
             inline: true
+          },
+          {
+            name: ` `,
+            value: `Made by __[${username5}](https://scratch.mit.edu/users/${username5}/)__`,
+            inline: false
           },
         )
         .setThumbnail(`${image}`)
