@@ -109,6 +109,7 @@ module.exports = {
         var views = "Not Found";
       }
       var joined = joined.substr(0, joined.indexOf('T'));
+      var joined = joined.replace(/-/g, "/");
 
       const embed = new EmbedBuilder()
         .setTitle(`${username}'s Stats`)
