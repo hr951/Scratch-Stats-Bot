@@ -6,11 +6,11 @@ module.exports = {
     .setDescription('see the information of scratch stats bot'),
 
   async execute(interaction) {
-
+    
     const thumbnail = interaction.client.user.displayAvatarURL();
 
     const embed = new EmbedBuilder()
-      .setTitle("Scratch Stats Bot ver.4.3")
+      .setTitle("Scratch Stats Bot ver.5.3")
       .setURL(`https://github.com/hr951/Scratch-Stats-Bot`)
       .addFields(
         {
@@ -24,8 +24,8 @@ module.exports = {
           inline: true
         },
         {
-          name: "rank",
-          value: `${global.rank}`,
+          name: "project",
+          value: `${global.project}`,
           inline: true
         },
         {
