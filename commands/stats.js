@@ -31,15 +31,14 @@ module.exports = {
 
     try {
       
-      //interaction.reply("Now Loading...")
-      interaction.deferReply();
-      
       const response_2 = await fetch(url_2);
       const json_2 = await response_2.json();
       if (json_2.code === "NotFound") {
-        interaction.editReply(`Scratchのユーザー「${username_2}」は存在しません。`);
+        await interaction.reply({ content: `Scratchのユーザー「${username_2}」は存在しません。`});
         return;
       };
+      
+      interaction.deferReply();
       
       do{        
       const url = `https://api.scratch.mit.edu/users/${username_2}/following/?limit=40&offset=${count_following}`;
@@ -108,6 +107,8 @@ module.exports = {
       if (!views) {
         var views = "Not Found";
       }
+      var joined_time = joined.substr(joined.indexOf('T')+1);
+      var joined_time = joined_time.substr(0, joined_time.indexOf('.'));
       var joined = joined.substr(0, joined.indexOf('T'));
       var joined = joined.replace(/-/g, "/");
 
@@ -127,7 +128,7 @@ module.exports = {
           },
           {
             name: "Joined (Y/M/D)",
-            value: `${joined}`,
+            value: `${joined}\n${joined_time}`,
             inline: true
           },
           {
