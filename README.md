@@ -14,6 +14,10 @@ Scratch Stats Botのコードです。<br>
 2024/04/21 statsのバグ(永遠ロード)を修正、statsのStatusがScratcherかScratch Teamに変更、explore(傾向)の実装<br>
 2024/04/29 discord.jsのアップデートに対応、exploreのUIを変更<br>
 2024/05/03 rankを削除、projectを追加、statsの年月日表示の変更<br>
+2024/05/07 embedフォルダの削除による簡略化<br>
+
+<a href = "https://discord.com/api/oauth2/authorize?client_id=1078409540392992981&permissions=10448581814336&scope=bot%20applications.commands"><b>Botを導入する</b></a><br>
+<a href = "https://discord.gg/wRdXB8MBt6"><b>サポートサーバー</b></a><br>
 
 
 メモ<br>
