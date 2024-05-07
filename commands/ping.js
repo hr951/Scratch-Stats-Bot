@@ -1,13 +1,39 @@
-const { SlashCommandBuilder } = require('discord.js');
-const embed = require('../embeds/embeds')
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ping')
 		.setDescription('Get Ping'),
+
 	async execute(interaction) {
-		await interaction.reply({ embeds: [embed.Embed_ping(interaction.client.ws.ping, '...')], allowedMentions: { repliedUser: false } })
+
+		const thumbnail = interaction.client.user.displayAvatarURL();
+
+		const embed = new Discord.EmbedBuilder()
+            .setColor(color)
+            .setDescription(`片道のPing : **${interaction.client.ws.ping}**ms\n往復のPing : **...**ms`)
+			.setColor("#855DD7")
+      		.setFooter({
+        			text: "Made by Scratch Stats Bot",
+        			iconURL: thumbnail,
+      					})
+			.setTimestamp();
+			
+	await interaction.reply({ embeds: [embed] })
+
     let msg = await interaction.fetchReply();
-		await interaction.editReply({ embeds: [embed.Embed_ping(interaction.client.ws.ping, msg.createdTimestamp - interaction.createdTimestamp)]});
+		
+	    const embed_2 = new Discord.EmbedBuilder()
+            .setColor(color)
+            .setDescription(`片道のPing : **${interaction.client.ws.ping}**ms\n往復のPing : **${msg.createdTimestamp - interaction.createdTimestamp}**ms`)
+			.setColor("#855DD7")
+      		.setFooter({
+        			text: "Made by Scratch Stats Bot",
+        			iconURL: thumbnail,
+      					})
+			.setTimestamp();
+
+			await interaction.editReply({ embeds: [embed_2] })
+
 	},
 };
