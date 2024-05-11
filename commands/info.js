@@ -43,6 +43,12 @@ module.exports = {
           value: `${global.ping}`,
           inline: true
         },
+        
+        {
+          name: " ",
+          value: `定期再起動予定時刻：<t:${global.unix}>`,
+          inline: false
+        },
       )
       .setColor("#855DD7")
       .setFooter({
