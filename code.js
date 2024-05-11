@@ -14,6 +14,10 @@ const token = process.env['DISCORD_BOT_TOKEN']
 
 client.on('ready', () => {
   client.channels.cache.get("1215637785873227887").send("!setting")
+  var now_unix = new Date().getTime();
+  const unix_12 = now_unix + 12 * 3600 * 1000;
+  const unix = String(unix_12).slice(0,-3);
+  global.unix = unix;
   setInterval(() => {
     client.user.setPresence({
       activities: [
@@ -110,10 +114,10 @@ client.on('messageCreate', async message => {
       }
       if (setting_rank.content.split("\n")[1].match(/@/)){
         const setting_rank_main = setting_rank.content.split("\n")[1];
-        global.rank = setting_rank_main.slice(0, -1);
+        global.project = setting_rank_main.slice(0, -1);
       }else if (setting_rank.content.split("\n")[2].match(/@/)){
         const setting_rank_main = setting_rank.content.split("\n")[2];
-        global.rank = setting_rank_main.slice(0, -1);
+        global.project = setting_rank_main.slice(0, -1);
       }
       if (setting_explore.content.split("\n")[1].match(/@/)){
         const setting_explore_main = setting_explore.content.split("\n")[1];
