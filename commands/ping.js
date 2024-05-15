@@ -10,7 +10,6 @@ module.exports = {
 		const thumbnail = interaction.client.user.displayAvatarURL();
 
 		const embed = new EmbedBuilder()
-            .setColor(color)
             .setDescription(`片道のPing : **${interaction.client.ws.ping}**ms\n往復のPing : **...**ms`)
 			.setColor("#855DD7")
       		.setFooter({
@@ -24,7 +23,6 @@ module.exports = {
     let msg = await interaction.fetchReply();
 		
 	    const embed_2 = new EmbedBuilder()
-            .setColor(color)
             .setDescription(`片道のPing : **${interaction.client.ws.ping}**ms\n往復のPing : **${msg.createdTimestamp - interaction.createdTimestamp}**ms`)
 			.setColor("#855DD7")
       		.setFooter({
