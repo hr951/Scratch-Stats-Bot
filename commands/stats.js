@@ -33,7 +33,7 @@ module.exports = {
       
       const response_2 = await fetch(url_2);
       const json_2 = await response_2.json();
-      if (json_2.code === "NotFound") {
+      if (json_2.code === "NotFound" || json_2.code === "ResourceNotFound") {
         await interaction.reply({ content: `Scratchのユーザー「${username_2}」は存在しません。`});
         return;
       };
