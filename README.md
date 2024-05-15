@@ -17,6 +17,7 @@ Scratch Stats Botのコードです。<br>
 2024/05/07 embedフォルダの削除による簡略化<br>
 2024/05/08 statsの再発永遠ロードバグの修正<br>
 2024/05/11 infoに定期再起動予定時刻を追加<br>
+2024/05/15 statsで絵文字のユーザーを検索するとエラー落ちするのを解決<br>
 
 <a href = "https://discord.com/api/oauth2/authorize?client_id=1078409540392992981&permissions=10448581814336&scope=bot%20applications.commands"><b>Botを導入する</b></a><br>
 <a href = "https://discord.gg/wRdXB8MBt6"><b>サポートサーバー</b></a><br>
