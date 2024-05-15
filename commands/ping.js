@@ -2,14 +2,14 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('ping')
+		.setName('demo-ping')
 		.setDescription('Get Ping'),
 
 	async execute(interaction) {
 
 		const thumbnail = interaction.client.user.displayAvatarURL();
 
-		const embed = new Discord.EmbedBuilder()
+		const embed = new EmbedBuilder()
             .setColor(color)
             .setDescription(`片道のPing : **${interaction.client.ws.ping}**ms\n往復のPing : **...**ms`)
 			.setColor("#855DD7")
@@ -23,7 +23,7 @@ module.exports = {
 
     let msg = await interaction.fetchReply();
 		
-	    const embed_2 = new Discord.EmbedBuilder()
+	    const embed_2 = new EmbedBuilder()
             .setColor(color)
             .setDescription(`片道のPing : **${interaction.client.ws.ping}**ms\n往復のPing : **${msg.createdTimestamp - interaction.createdTimestamp}**ms`)
 			.setColor("#855DD7")
