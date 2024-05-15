@@ -2,7 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('demo-ping')
+		.setName('ping')
 		.setDescription('Get Ping'),
 
 	async execute(interaction) {
