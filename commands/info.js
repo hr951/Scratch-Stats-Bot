@@ -10,7 +10,7 @@ module.exports = {
     const thumbnail = interaction.client.user.displayAvatarURL();
 
     const embed = new EmbedBuilder()
-      .setTitle("Scratch Stats Bot ver.5.7")
+      .setTitle("Scratch Stats Bot ver.6.7")
       .setURL(`https://github.com/hr951/Scratch-Stats-Bot`)
       .addFields(
         {
@@ -31,6 +31,11 @@ module.exports = {
         {
           name: "explore",
           value: `${global.explore}`,
+          inline: true
+        },
+        {
+          name: "explore",
+          value: `${global.search}`,
           inline: true
         },
         {
