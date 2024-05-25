@@ -34,7 +34,7 @@ module.exports = {
           inline: true
         },
         {
-          name: "explore",
+          name: "search",
           value: `${global.search}`,
           inline: true
         },
