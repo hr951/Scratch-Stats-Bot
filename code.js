@@ -77,6 +77,7 @@ client.on('messageCreate', async message => {
        const setting_explore = await message.channel.messages.fetch("1215639888473489429");
        const setting_info = await message.channel.messages.fetch("1215639920694009916");
        const setting_ping = await message.channel.messages.fetch("1215639950461243412");
+       const setting_search = await message.channel.messages.fetch("1243833406446501899");
        const reply = await message.reply("設定が完了しました。");
        const delset = await message.channel.messages.fetch({after : "1215672856076222505"});
        //message.channel.bulkDelete(delset);      
@@ -139,6 +140,13 @@ client.on('messageCreate', async message => {
       }else if (setting_ping.content.split("\n")[2].match(/@/)){
         const setting_ping_main = setting_ping.content.split("\n")[2];
         global.ping = setting_ping_main.slice(0, -1);
+      }
+      if (setting_search.content.split("\n")[1].match(/@/)){
+        const setting_search_main = setting_search.content.split("\n")[1];
+        global.search = setting_search_main.slice(0, -1);
+      }else if (setting_search.content.split("\n")[2].match(/@/)){
+        const setting_search_main = setting_search.content.split("\n")[2];
+        global.search = setting_search_main.slice(0, -1);
       }
       }}
     });
