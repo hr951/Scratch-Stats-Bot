@@ -8,6 +8,7 @@ module.exports = {
     .addStringOption(option =>
       option.setName('languages')
         .setDescription('言語を選んでください')
+        .setRequired(true)
         .addChoices(
           { name: '日本語', value: 'ja' },
           { name: 'English', value: 'en' }
@@ -85,23 +86,13 @@ module.exports = {
         .addFields(
           {
             name: ` `,
-            value: `**[${title1}](https://scratch.mit.edu/projects/${id1}/)**`,
+            value: `**[${title1}](https://scratch.mit.edu/projects/${id1}/)**  (${id1})`,
             inline: false
           },
           {
-            name: `👀${views1}`,
+            name: `👀${views1}    ❤️${loves1}    ⭐${favorites1}`,
             value: " ",
-            inline: true
-          },
-          {
-            name: `❤️${loves1}`,
-            value: " ",
-            inline: true
-          },
-          {
-            name: `⭐${favorites1}`,
-            value: " ",
-            inline: true
+            inline: false
           },
           {
             name: ` `,
@@ -110,23 +101,13 @@ module.exports = {
           },
           {
             name: ` `,
-            value: `**[${title2}](https://scratch.mit.edu/projects/${id2}/)**`,
+            value: `**[${title2}](https://scratch.mit.edu/projects/${id2}/)**  (${id2})`,
             inline: false
           },
           {
-            name: `👀${views2}`,
+            name: `👀${views2}    ❤️${loves2}    ⭐${favorites2}`,
             value: " ",
-            inline: true
-          },
-          {
-            name: `❤️${loves2}`,
-            value: " ",
-            inline: true
-          },
-          {
-            name: `⭐${favorites2}`,
-            value: " ",
-            inline: true
+            inline: false
           },
           {
             name: ` `,
@@ -135,21 +116,11 @@ module.exports = {
           },
           {
             name: ` `,
-            value: `**[${title3}](https://scratch.mit.edu/projects/${id3}/)**`,
+            value: `**[${title3}](https://scratch.mit.edu/projects/${id3}/)**  (${id3})`,
             inline: false
           },
           {
-            name: `👀${views3}`,
-            value: " ",
-            inline: true
-          },
-          {
-            name: `❤️${loves3}`,
-            value: " ",
-            inline: true
-          },
-          {
-            name: `⭐${favorites3}`,
+            name: `👀${views3}    ❤️${loves3}    ⭐${favorites3}`,
             value: " ",
             inline: true
           },
@@ -160,21 +131,11 @@ module.exports = {
           },
           {
             name: ` `,
-            value: `**[${title4}](https://scratch.mit.edu/projects/${id4}/)**`,
+            value: `**[${title4}](https://scratch.mit.edu/projects/${id4}/)**  (${id4})`,
             inline: false
           },
           {
-            name: `👀${views4}`,
-            value: " ",
-            inline: true
-          },
-          {
-            name: `❤️${loves4}`,
-            value: " ",
-            inline: true
-          },
-          {
-            name: `⭐${favorites4}`,
+            name: `👀${views4}    ❤️${loves4}    ⭐${favorites4}`,
             value: " ",
             inline: true
           },
@@ -185,21 +146,11 @@ module.exports = {
           },
           {
             name: ` `,
-            value: `**[${title5}](https://scratch.mit.edu/projects/${id5}/)**`,
+            value: `**[${title5}](https://scratch.mit.edu/projects/${id5}/)**  (${id5})`,
             inline: false
           },
           {
-            name: `👀${views5}`,
-            value: " ",
-            inline: true
-          },
-          {
-            name: `❤️${loves5}`,
-            value: " ",
-            inline: true
-          },
-          {
-            name: `⭐${favorites5}`,
+            name: `👀${views5}    ❤️${loves5}    ⭐${favorites5}`,
             value: " ",
             inline: true
           },
