@@ -29,6 +29,8 @@ module.exports = {
 
     const url_2 = `https://api.scratch.mit.edu/users/${username_2}`;
 
+    const url_5 = `https://scratch.mit.edu/site-api/users/all/${username_2}`;
+
     try {
       
       const response_2 = await fetch(url_2);
@@ -37,6 +39,9 @@ module.exports = {
         await interaction.reply({ content: `Scratchのユーザー「${username_2}」は存在しません。`});
         return;
       };
+
+      const response_5 = await fetch(url_5);
+      const json_5 = await response_5.json();
       
       interaction.deferReply();
       
@@ -82,6 +87,9 @@ module.exports = {
       const username = json_2.username;
       var country = json_2.profile.country;
       var joined = json_2.history.joined;
+      const pro_id = json_5.featured_project_data.id;
+      const pro_title = json_5.featured_project_data.title;
+      const pro_thumbnail = json_5.featured_project_data.thumbnail_url;
       
       if(json_2.scratchteam){
         var status = "Scratch Team";
@@ -161,9 +169,14 @@ module.exports = {
             value: `${views}`,
             inline: true
           },
+          {
+            name: "Featured Project",
+            value: `**[${pro_title}](https://scratch.mit.edu/projects/${pro_id})**  (${pro_id})`,
+            inline: true
+          },
         )
         .setThumbnail(`https://cdn2.scratch.mit.edu/get_image/user/${id}_90x90.png`)
-        //.setImage(`https://cdn2.scratch.mit.edu/get_image/user/${id}_90x90.png`)
+        .setImage(`https:${pro_thumbnail}`)
         .setColor("#855DD7")
         .setFooter({
           text: "Made by Scratch Stats Bot",
