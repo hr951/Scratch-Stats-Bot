@@ -120,7 +120,7 @@ module.exports = {
             inline: true
           },
         )
-        .setThumbnail(`https://cdn2.scratch.mit.edu/get_image/project/${id}_480x360.png`)
+        .setImage(`https://cdn2.scratch.mit.edu/get_image/project/${id}_480x360.png`)
         .setColor("#855DD7")
         .setFooter({
           text: "Made by Scratch Stats Bot",
