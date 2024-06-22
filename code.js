@@ -118,16 +118,16 @@ client.on('messageCreate', async message => {
     if (!message.content.startsWith('!')) return
     if (message.channel.id === "1215637785873227887"){
     if (message.content === '!setting') {
-       const setting_status = await message.channel.messages.fetch("1215638473482960926");
-       const setting_stats = await message.channel.messages.fetch("1215639736169922560");
-       const setting_rank = await message.channel.messages.fetch("1215639808609751050");
-       const setting_explore = await message.channel.messages.fetch("1215639888473489429");
-       const setting_info = await message.channel.messages.fetch("1215639920694009916");
-       const setting_ping = await message.channel.messages.fetch("1215639950461243412");
-       const setting_search = await message.channel.messages.fetch("1243833406446501899");
+       const setting_status = await message.channel.messages.fetch("1253986110787555338");
+       const setting_stats = await message.channel.messages.fetch("1253986139065421884");
+       const setting_rank = await message.channel.messages.fetch("1253986159487619133");
+       const setting_explore = await message.channel.messages.fetch("1253986178538012714");
+       const setting_info = await message.channel.messages.fetch("1253986198633058365");
+       const setting_ping = await message.channel.messages.fetch("1253986215976505344");
+       const setting_search = await message.channel.messages.fetch("1253986237698543646");
        const reply = await message.reply("設定が完了しました。");
        const delset = await message.channel.messages.fetch({after : "1215672856076222505"});
-       //message.channel.bulkDelete(delset);      
+       //message.channel.bulkDelete();      
       setTimeout(() => {
         message.delete();
         reply.delete();
