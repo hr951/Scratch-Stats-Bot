@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, Collection, ActivityType } = require("discord.js");
+const { Client, GatewayIntentBits, Collection, ActivityType, Partials, ButtonBuilder, ButtonStyle, ActionRowBuilder, EmbedBuilder } = require("discord.js");
 const fs = require('node:fs');
 const path = require('node:path');
 const client = new Client({
@@ -7,8 +7,13 @@ const client = new Client({
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildMessageReactions,
-    GatewayIntentBits.MessageContent
-  ]});
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.DirectMessages
+  ],
+  partials: [
+    Partials.Channel, Partials.Message
+  ]
+  });
 
 const token = process.env['DISCORD_BOT_TOKEN']
 
@@ -49,6 +54,16 @@ for (const file of commandFiles) {
 }
 
 client.on('interactionCreate', async interaction => {
+  if (interaction.isButton()){
+    try{
+    const dm_del_chan = await interaction.client.channels.fetch(process.env.DM_ID);
+    const dm_del_msg = await dm_del_chan.messages.fetch(interaction.customId);
+    dm_del_msg.delete();
+    await interaction.reply("削除しました。")
+    } catch (error) {
+      await interaction.reply("エラーが発生しました。\n既に削除されている可能性があります。")
+      console.log(error)}
+  }
   if (!interaction.isChatInputCommand()) return;
 
   const command = interaction.client.commands.get(interaction.commandName);
@@ -68,6 +83,38 @@ client.on('interactionCreate', async interaction => {
 
 
 client.on('messageCreate', async message => {
+  if (message.channel.type === 1 && !message.author.bot) {
+    const dm_user = message.author.id;
+    const dm_msg = message.content;
+    const dm_id = message.id;
+    try {
+          const sent_msg = await client.users.cache.get(process.env.My_ID).send(`From <@${dm_user}>(${dm_user})\n「**${dm_msg}**」`);
+          global.msg_id = sent_msg.id; 
+        } catch (error) {
+            console.error('メッセージの返信中にエラーが発生しました:\n', error);
+        }
+    const Button = new ButtonBuilder()
+		.setCustomId(`${global.msg_id}`)
+		.setStyle(ButtonStyle.Primary)
+		.setLabel("削除する")
+		.setEmoji("🗑️");
+    
+    const dm_emb = new EmbedBuilder()
+  .addFields(
+    {
+      name: " ",
+      value: `<@${process.env.My_ID}> に\n「**${dm_msg}**」\nを送信しました。\n取り消す場合は下のボタンを押してください。`,
+      inline: true
+    },
+    )
+  .setColor("#855DD7");
+    
+        try {
+            await message.reply({ embeds: [dm_emb], components: [new ActionRowBuilder().setComponents(Button)]});
+        } catch (error) {
+            console.error('メッセージの返信中にエラーが発生しました:\n', error);
+        }
+    }
     if (!message.content.startsWith('!')) return
     if (message.channel.id === "1215637785873227887"){
     if (message.content === '!setting') {
