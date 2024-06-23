@@ -20,6 +20,7 @@ Scratch Stats Botのコードです。<br>
 2024/05/15 statsで絵文字のユーザーを検索するとエラー落ちするのを解決<br>
 2024/05/25 searchの追加、プロジェクト関連にidを追加、statsに注目のプロジェクト追加、exploreの細かな修正<br>
 2024/06/22 DMで要望等を受けられる機能を追加<br>
+2024/06/23 DMでの受信での削除機能の改善<br>
 
 <a href = "https://discord.com/api/oauth2/authorize?client_id=1078409540392992981&permissions=10448581814336&scope=bot%20applications.commands"><b>Botを導入する</b></a><br>
 <a href = "https://discord.gg/wRdXB8MBt6"><b>サポートサーバー</b></a><br>
