@@ -55,14 +55,29 @@ for (const file of commandFiles) {
 
 client.on('interactionCreate', async interaction => {
   if (interaction.isButton()){
+    const dm_del_msg = new EmbedBuilder()
+  .addFields(
+    {
+      name: "メッセージを削除しました。",
+      value: ` `,
+      inline: true
+    },
+    )
+  .setColor("#855DD7");
+    
     try{
     const dm_del_chan = await interaction.client.channels.fetch(process.env.DM_ID);
     const dm_del_msg = await dm_del_chan.messages.fetch(interaction.customId);
     dm_del_msg.delete();
+    const dm_from_id = interaction.message.id;
+    const dm_from_ch_id = interaction.channelId;
+    const dm_from_chdel = await interaction.client.channels.fetch(dm_from_ch_id);
+    const dm_from_del = await dm_from_chdel.messages.fetch(dm_from_id);
     await interaction.reply("削除しました。")
+    dm_from_del.delete();
     } catch (error) {
       await interaction.reply("エラーが発生しました。\n既に削除されている可能性があります。")
-      console.log(error)}
+      console.error(error)}
   }
   if (!interaction.isChatInputCommand()) return;
 
@@ -91,7 +106,9 @@ client.on('messageCreate', async message => {
           const sent_msg = await client.users.cache.get(process.env.My_ID).send(`From <@${dm_user}>(${dm_user})\n「**${dm_msg}**」`);
           global.msg_id = sent_msg.id; 
         } catch (error) {
-            console.error('メッセージの返信中にエラーが発生しました:\n', error);
+            await message.channel.send("メッセージの送信中にエラーが発生しました。\n定期再起動中またはメッセージが長すぎる可能性があります。");
+            console.error('メッセージの送信中にエラーが発生しました:\n', error);
+          return;
         }
     const Button = new ButtonBuilder()
 		.setCustomId(`${global.msg_id}`)
