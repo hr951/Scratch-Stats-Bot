@@ -99,17 +99,50 @@ client.on('interactionCreate', async interaction => {
 
 client.on('messageCreate', async message => {
   if (message.channel.type === 1 && !message.author.bot) {
+    if(message.author.id === process.env.My_ID){
+      if(message.content.slice(0, 1) === "!"){
+        const str = message.content.slice(1);
+        const id = str.substr(0, str.indexOf(' '));
+        const msg_to = str.substr(str.indexOf(' ') + 1);
+        if(id){
+          if(msg_to){
+            if (msg_to.length > 200){
+              await message.reply("メッセージの送信中にエラーが発生しました。\nメッセージは200文字以内で送信してください。");
+              return;
+              } else {
+                try {
+                    await client.users.cache.get(id).send(`${msg_to}`);
+                    await message.react("✅");
+                      } catch (error) {
+                        await message.reply("メッセージの送信中にエラーが発生しました。\n!<ID> <MSG>で記入してください。");
+                        await message.react("❌");
+                        console.error('メッセージの送信中にエラーが発生しました:\n', error);
+                        return;
+                                        }
+                       }
+          }
+        }else{
+          await message.reply("!<ID> <MSG>で記入してください。")
+        }
+      }
+      return;
+    }
     const dm_user = message.author.id;
     const dm_msg = message.content;
     const dm_id = message.id;
+    if (dm_msg.length > 200){
+      await message.reply("メッセージの送信中にエラーが発生しました。\nメッセージは200文字以内で送信してください。");
+      return;
+    } else {
     try {
-          const sent_msg = await client.users.cache.get(process.env.My_ID).send(`From <@${dm_user}>(${dm_user})\n「**${dm_msg}**」`);
+          const sent_msg = await client.users.cache.get(process.env.My_ID).send(`From <@${dm_user}>(${dm_user})\n**${dm_msg}**`);
           global.msg_id = sent_msg.id; 
         } catch (error) {
             await message.channel.send("メッセージの送信中にエラーが発生しました。\n定期再起動中またはメッセージが長すぎる可能性があります。");
             console.error('メッセージの送信中にエラーが発生しました:\n', error);
           return;
         }
+    }
     const Button = new ButtonBuilder()
 		.setCustomId(`${global.msg_id}`)
 		.setStyle(ButtonStyle.Primary)
