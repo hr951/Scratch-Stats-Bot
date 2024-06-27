@@ -23,15 +23,20 @@ module.exports = {
     var projects = 0;
     var count_project = 0;
     var count_follower = 0;
-    var followers = 0;
+    let followers = 0;
     var count_following = 0;
     var followings = 0;
+    var notfollower = 0;
 
     const url_2 = `https://api.scratch.mit.edu/users/${username_2}`;
 
     const url_5 = `https://scratch.mit.edu/site-api/users/all/${username_2}`;
 
     try {
+      
+     /*let url_7 = `https://scratch.mit.edu/users/${username_2}`;
+     const response_7 = await fetch(url_7);
+      console.log(response_7.status);*/
       
       const response_2 = await fetch(url_2);
       const json_2 = await response_2.json();
@@ -56,15 +61,25 @@ module.exports = {
       } while (global.json_length > 0);
       
       do{
+      let notfollowercount = 0;
       const url_3 = `https://api.scratch.mit.edu/users/${username_2}/followers/?limit=40&offset=${count_follower}`;
 
       const response_3 = await fetch(url_3);
       const json_3 = await response_3.json();
-        count_follower = 40 + count_follower;
-      var followers = json_3.length + followers;
+        count_follower += 40;
+      followers += json_3.length;
       global.json_3_length = json_3.length;
-      } while (global.json_3_length > 0);
-      
+        for (let i = 0; i < json_3.length; i++) {
+              let url_7 = `https://scratch.mit.edu/users/${json_3[notfollowercount].username}`;
+              const response_7 = await fetch(url_7);
+              notfollowercount++;
+              //console.log(response_7.status)
+              if(response_7.status === 404){
+                notfollower++;
+              }
+              }
+      } while (global.json_3_length === 40);
+      followers -= notfollower;
       do{
       const url_4 = `https://api.scratch.mit.edu/users/${username_2}/projects?limit=40&offset=${count_project}`;
         count_stats = 0;
@@ -87,9 +102,20 @@ module.exports = {
       const username = json_2.username;
       var country = json_2.profile.country;
       var joined = json_2.history.joined;
-      const pro_id = json_5.featured_project_data.id;
-      const pro_title = json_5.featured_project_data.title;
-      const pro_thumbnail = json_5.featured_project_data.thumbnail_url;
+      var pro_id = json_5.featured_project;
+      
+      const url_6 = `https://api.scratch.mit.edu/projects/${pro_id}`;
+      const response_6 = await fetch(url_6);
+      if(response_6.status === 200){
+      const json_6 = await response_6.json();
+      var pro_title = json_6.title;
+      var pro_thumbnail = json_6.image;
+      }else{
+        var pro_title = "NotFound";
+        var pro_thumbnail = "https://cdn2.scratch.mit.edu/get_image/project/1042518320_480x360.png";
+        var pro_id = "1042518320";
+        
+      }      
       
       if(json_2.scratchteam){
         var status = "Scratch Team";
@@ -98,7 +124,7 @@ module.exports = {
       }
 
       if (!followers) {
-        var followers = "Not Found";
+        followers = "Not Found";
       }
       if (!followings) {
         var followings = "Not Found";
@@ -176,7 +202,7 @@ module.exports = {
           },
         )
         .setThumbnail(`https://cdn2.scratch.mit.edu/get_image/user/${id}_90x90.png`)
-        .setImage(`https:${pro_thumbnail}`)
+        .setImage(/*`https:*/`${pro_thumbnail}`)
         .setColor("#855DD7")
         .setFooter({
           text: "Made by Scratch Stats Bot",
