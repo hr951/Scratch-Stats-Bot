@@ -7,11 +7,11 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "discord.js": "^14.15.3",
+    "discord.js": "^14.14.1",
     "node-fetch": "^2.7.0"
   },
   "engines": {
-    "node": "18.x"
+    "node": "16.x"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/discord-js-v14-template-glitch"
