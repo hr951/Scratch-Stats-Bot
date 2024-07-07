@@ -31,7 +31,7 @@ module.exports = {
       const json = await response.json();
       // ユーザー情報が存在しなければエラーメッセージを返す
       if (json.error) {
-        interaction.editReply({ content: `傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。`, ephemeral: true });
+        interaction.reply({ content: `傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。`, ephemeral: true });
         return;
       }
 
@@ -174,7 +174,7 @@ module.exports = {
       // エラーが発生したらコンソールに出力
       console.error(error);
       // エラーメッセージを返信
-      await interaction.editReply({ content: 'APIから傾向を取得できませんでした。', ephemeral: true });
+      await interaction.reply({ content: 'APIから傾向を取得できませんでした。', ephemeral: true });
 
     }
   },
