@@ -15,9 +15,26 @@ module.exports = {
 
     var id = interaction.options.getString('id');
     const thumbnail = interaction.client.user.displayAvatarURL();
-    const id_2 = id;
+    var id_2 = id;
+    
+    function containsOnlyNumbers(str) {
+    return /^\d+$/.test(str);
+}
+    
+    const check = containsOnlyNumbers(id);
+    console.log(check)
+    
+    if(check === false){
+      const match = id_2.match(/projects\/(\d+)/);
+    if (match) {
+        return match[1];
+    } else {
+        interaction.reply({ content: `Error\nError code : URLが正しくありません。\nURLを確かめてください。`, ephemeral: true });
+        return;
+    }}
 
-    const url = `https://api.scratch.mit.edu/projects/${id}`;
+    const url = `https://api.scratch.mit.edu/projects/${id_2}`;
+    console.log(id_2)
 
     try {
       // ユーザー情報を取得するリクエストを送信
@@ -120,7 +137,7 @@ module.exports = {
             inline: true
           },
         )
-        .setImage(`https://cdn2.scratch.mit.edu/get_image/project/${id}_480x360.png`)
+        .setImage(`https://cdn2.scratch.mit.edu/get_image/project/${id_2}_480x360.png`)
         .setColor("#855DD7")
         .setFooter({
           text: "Made by Scratch Stats Bot",
