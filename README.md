@@ -23,6 +23,7 @@ Scratch Stats Botのコードです。<br>
 2024/06/23 DMでの受信での削除機能の改善<br>
 2024/06/26 DMでの送信機能を追加、送信可能文字数を200文字に設定<br>
 2024/06/27 statsでフォロワー数が正しく表示されない不具合を修正、statsの注目のプロジェクトが取得できなかった場合エラー画像を送信するように変更<br>
+2024/07/07 コマンド全般のエラー処理を修正<br>
 
 <a href = "https://discord.com/api/oauth2/authorize?client_id=1078409540392992981&permissions=10448581814336&scope=bot%20applications.commands"><b>Botを導入する</b></a><br>
 <a href = "https://discord.gg/wRdXB8MBt6"><b>サポートサーバー</b></a><br>
