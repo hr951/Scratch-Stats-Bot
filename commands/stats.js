@@ -218,7 +218,7 @@ module.exports = {
       console.error(error);
 
       // エラーメッセージを返信
-      await interaction.reply({ content: 'ScratchStatsAPIからユーザー情報を取得できませんでした', ephemeral: true });
+      await interaction.editReply({ content: 'Error\nError code : ScratchAPIから情報を取得できません。\n時間を空けて再度お試しください。', ephemeral: true });
     }
   },
 
