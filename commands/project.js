@@ -27,7 +27,7 @@ module.exports = {
     if(check === false){
       const match = id_2.match(/projects\/(\d+)/);
     if (match) {
-        return match[1];
+        var id_2 = match;
     } else {
         interaction.reply({ content: `Error\nError code : URLが正しくありません。\nURLを確かめてください。`, ephemeral: true });
         return;
