@@ -13,7 +13,7 @@ module.exports = {
 
   async execute(interaction) {
 
-    const username = interaction.options.getString('username');
+    var username = interaction.options.getString('username');
     const thumbnail = interaction.client.user.displayAvatarURL();
     const username_2 = username;
     var count_stats = 0;
@@ -99,7 +99,7 @@ module.exports = {
 
       // ユーザー情報から必要なデータを取得
       const id = json_2.id;
-      const username = json_2.username;
+      var username = json_2.username;
       var country = json_2.profile.country;
       var joined = json_2.history.joined;
       var pro_id = json_5.featured_project;
@@ -115,7 +115,15 @@ module.exports = {
         var pro_thumbnail = "https://cdn2.scratch.mit.edu/get_image/project/1042518320_480x360.png";
         var pro_id = "1042518320";
         
-      }      
+      }
+      
+      const response_8 = await fetch(`https://scratch.mit.edu/users/${username}`);
+      if(response_8.status === 404){
+        var title = `${username}'s Stats (Deleted User)`;
+      } else {
+        var title = `${username}'s Stats'`
+      }
+      
       
       if(json_2.scratchteam){
         var status = "Scratch Team";
@@ -147,7 +155,7 @@ module.exports = {
       var joined = joined.replace(/-/g, "/");
 
       const embed = new EmbedBuilder()
-        .setTitle(`${username}'s Stats`)
+        .setTitle(title)
         .setURL(`https://scratch.mit.edu/users/${username}`)
         .addFields(
           {
