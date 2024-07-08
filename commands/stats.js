@@ -121,7 +121,7 @@ module.exports = {
       if(response_8.status === 404){
         var title = `${username}'s Stats (Deleted User)`;
       } else {
-        var title = `${username}'s Stats'`
+        var title = `${username}'s Stats`
       }
       
       
