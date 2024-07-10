@@ -40,5 +40,5 @@ Competing : 参戦中です<br>
 <br>
 online : オンライン<br>
 idle : 退席中<br>
-ndn : 応答不可<br>
+dnd : 応答不可<br>
 invisibility : 表示なし
