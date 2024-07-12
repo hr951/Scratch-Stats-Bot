@@ -14,7 +14,7 @@
 Scratchに特化したScratchユーザーのためにBotです。<br>
 現時点で多くのコマンドを有しています。<br>
 動作に特別な権限は必要ありません。<br>
-いつでも気軽に[サポートサーバー](https://discord.gg/wRdXB8MBt6)で質問や要望を出してください！
+いつでも気軽に<a href ="https://discord.gg/wRdXB8MBt6">サポートサーバー</a>で質問や要望を出してください！
 
 <h2><a id="update">更新履歴</a></h2><br>
 2023/10/17 rankの追加、API復活<br>
