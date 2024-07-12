@@ -4,7 +4,7 @@
 
 このBotはScratchにおける様々な情報を取得することができます。
 
-<a id="whatssb"><img width="175" height="66" src="images/what-ssb.png"></a>
+[<img width="175" height="66" src="images/what-ssb.png">](#whatssb)
 [<img width="175" height="66" src="images/update-history.png">](#update)
 <a id="terms"><img width="175" height="66" src="images/conditions-terms.png"></a>
 <a id="policy"><img width="175" height="66" src="images/privacypolicy.png"></a>
