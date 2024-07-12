@@ -41,7 +41,7 @@ Scratchに特化したScratchユーザーのためにBotです。<br>
 2024/07/08 statsでのエラーを他人に見えないように変更、projectの検索がURLからもできるように変更<br>
 
 <h2><a id="terms">利用規約</a></h2><br>
-2024年7月12日 制定<br>
+2024年7月12日 制定<br><br>
 
 この利用規約 (以下、本規約といいます。) は、Scratch Stats Bot (以下、「本サービス」といいます。) の利用条件等を制定するものです。本サービスの使用者は、本規約に従って本サービスを使用することができます。<br>
 
@@ -81,6 +81,9 @@ Scratchに特化したScratchユーザーのためにBotです。<br>
 2.自然災害等による不可抗力により、本サービスの提供が困難となった場合<br>
 3.コンピュータまたは通信回線等が事故により停止した場合<br>
 4.その他、当者が本サービスの提供が困難と判断した場合<br>
+
+<h2><a id="policy">プライバシーポリシー</a></h2><br>
+2024年7月12日 制定<br><br>
 
 <a href = "https://discord.com/api/oauth2/authorize?client_id=1078409540392992981&permissions=10448581814336&scope=bot%20applications.commands"><b>Botを導入する</b></a><br>
 <a href = "https://discord.gg/wRdXB8MBt6"><b>サポートサーバー</b></a><br>
