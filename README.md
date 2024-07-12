@@ -1,7 +1,9 @@
 # Scratch-Stats-Bot
 
 <img src="images/ssb-banner.png">
-## 目次
+
+このBotはScratchにおける様々な情報を取得することができます。
+
 
 更新履歴<br>
 2023/10/17 rankの追加、API復活<br>
