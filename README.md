@@ -6,17 +6,17 @@
 
 [<img width="175" height="66" src="images/what-ssb.png">](#whatssb)
 [<img width="175" height="66" src="images/update-history.png">](#update)
-<a id="terms"><img width="175" height="66" src="images/conditions-terms.png"></a>
+[<img width="175" height="66" src="images/conditions-terms.png">](#terms)
 <a id="policy"><img width="175" height="66" src="images/privacypolicy.png"></a>
 <a id="howintroduce"><img width="175" height="66" src="images/how-introduce.png"></a>
 
-<b><big><a id="whatssb">Scratch Stats Bot とは</a></big></b><br>
+<h2><a id="whatssb">Scratch Stats Bot とは</a></h2><br>
 Scratchに特化したScratchユーザーのためにBotです。<br>
 現時点で多くのコマンドを有しています。<br>
 動作に特別な権限は必要ありません。<br>
 いつでも気軽に[サポートサーバー](https://discord.gg/wRdXB8MBt6)で質問や要望を出してください！
 
-<b><big><a id="update">更新履歴</a></big></b><br>
+<h2><a id="update">更新履歴</a></h2><br>
 2023/10/17 rankの追加、API復活<br>
 2023/10/19 stats、rankがNew Scratcherに対応していなかった問題を修正<br>
 2023/10/21 rankの順位がすべて○thで表示されていたものを1st、2nd、3rdなどと変更<br>
@@ -40,7 +40,7 @@ Scratchに特化したScratchユーザーのためにBotです。<br>
 2024/07/07 コマンド全般のエラー処理を修正<br>
 2024/07/08 statsでのエラーを他人に見えないように変更、projectの検索がURLからもできるように変更<br>
 
-<b><big><a id="terms">利用規約</a></big></b><br>
+<h2><a id="terms">利用規約</a></h2><br>
 2024年7月12日 制定<br>
 
 この利用規約 (以下、本規約といいます。) は、Scratch Stats Bot (以下、「本サービス」といいます。) の利用条件等を制定するものです。本サービスの使用者は、本規約に従って本サービスを使用することができます。<br>
