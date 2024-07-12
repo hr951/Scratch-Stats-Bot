@@ -10,7 +10,13 @@
 <a id="policy"><img width="175" height="66" src="images/privacypolicy.png"></a>
 <a id="howintroduce"><img width="175" height="66" src="images/how-introduce.png"></a>
 
-<a id="update">更新履歴</a><br>
+<b><big><a id="whatssb">Scratch Stats Bot とは</a></b></big><br>
+Scratchに特化したScratchユーザーのためにBotです。<br>
+現時点で多くのコマンドを有しています。<br>
+動作に特別な権限は必要ありません。<br>
+いつでも気軽に[サポートサーバー](https://discord.gg/wRdXB8MBt6)で質問や要望を出してください！
+
+<b><big><a id="update">更新履歴</a></b></big><br>
 2023/10/17 rankの追加、API復活<br>
 2023/10/19 stats、rankがNew Scratcherに対応していなかった問題を修正<br>
 2023/10/21 rankの順位がすべて○thで表示されていたものを1st、2nd、3rdなどと変更<br>
