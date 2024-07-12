@@ -102,8 +102,12 @@ Scratchに特化したScratchユーザーのためにBotです。<br>
 
 ・ユーザーID<br>
 ・`` /stats ``で入力したユーザー名<br>
-・`` /project `` で入力したプロジェクトIDまたは、URL<br>
-尚、保存した情報は暗号化されず保存されます。
+・`` /project `` で入力したプロジェクトIDまたは、URL<br><br>
+尚、保存した情報は暗号化されず保存されます。<br>
+
+<h3>第4条 情報の取り扱い</h3>
+本サービスが保存した情報は、本サービスに搭載している機能を使用する場合のみ使用し、データベース以外のプラットフォームやサービス、ユーザーには送信・公開いたしません。<br>
+ただし、外部APIを使用した機能では、API開発元のプライバシーポリシーが優先されるものとします。<br>
 
 <a href = "https://discord.com/api/oauth2/authorize?client_id=1078409540392992981&permissions=10448581814336&scope=bot%20applications.commands"><b>Botを導入する</b></a><br>
 <a href = "https://discord.gg/wRdXB8MBt6"><b>サポートサーバー</b></a><br>
