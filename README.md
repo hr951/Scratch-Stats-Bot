@@ -110,11 +110,11 @@ Scratchに特化したScratchユーザーのためにBotです。<br>
 ただし、外部APIを使用した機能では、API開発元のプライバシーポリシーが優先されるものとします。<br>
 
 <h2><a id="howintroduce">導入方法</a></h2>
-<a href="https://discord.com/api/oauth2/authorize?client_id=1078409540392992981&permissions=10448581814336&scope=bot%20applications.commands">こちら</a>から導入することができます。
+<a href="https://discord.com/api/oauth2/authorize?client_id=1078409540392992981&permissions=10448581814336&scope=bot%20applications.commands">こちら</a>から導入することができます。<br>
 詳しいことは<a href="https://discord.gg/wRdXB8MBt6">サポートサーバー</a>にて受け付けています。
 
 
-メモ<br>
+<br><br><br>メモ<br>
 Playing : プレイ中<br>
 Streaming : Twitchでライブ<br>
 Listening : 再生中<br>
