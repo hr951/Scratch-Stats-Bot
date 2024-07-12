@@ -8,7 +8,7 @@
 [<img width="175" height="66" src="images/update-history.png">](#update)
 [<img width="175" height="66" src="images/conditions-terms.png">](#terms)
 [<img width="175" height="66" src="images/privacypolicy.png">](#policy)
-<a id="howintroduce"><img width="175" height="66" src="images/how-introduce.png"></a>
+[<img width="175" height="66" src="images/how-introduce.png">](#howintroduce)
 
 <h2><a id="whatssb">Scratch Stats Bot とは</a></h2><br>
 Scratchに特化したScratchユーザーのためにBotです。<br>
@@ -109,8 +109,9 @@ Scratchに特化したScratchユーザーのためにBotです。<br>
 本サービスが保存した情報は、本サービスに搭載している機能を使用する場合のみ使用し、データベース以外のプラットフォームやサービス、ユーザーには送信・公開いたしません。<br>
 ただし、外部APIを使用した機能では、API開発元のプライバシーポリシーが優先されるものとします。<br>
 
-<a href = "https://discord.com/api/oauth2/authorize?client_id=1078409540392992981&permissions=10448581814336&scope=bot%20applications.commands"><b>Botを導入する</b></a><br>
-<a href = "https://discord.gg/wRdXB8MBt6"><b>サポートサーバー</b></a><br>
+<h2><a id="howintroduce">導入方法</a></h2>
+<a href="https://discord.com/api/oauth2/authorize?client_id=1078409540392992981&permissions=10448581814336&scope=bot%20applications.commands">こちら</a>から導入することができます。
+詳しいことは<a href="https://discord.gg/wRdXB8MBt6">サポートサーバー</a>にて受け付けています。
 
 
 メモ<br>
