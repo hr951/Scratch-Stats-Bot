@@ -1,5 +1,3 @@
-# Scratch-Stats-Bot
-
 <img src="images/ssb-banner.png">
 
 <h2>目次</h2>
