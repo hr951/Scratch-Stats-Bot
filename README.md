@@ -4,9 +4,13 @@
 
 このBotはScratchにおける様々な情報を取得することができます。
 
-<img width="175" height="66" src="images/what-ssb.png"><img width="175" height="66" src="images/what-ssb.png">
+<a id="whatssb"><img width="175" height="66" src="images/what-ssb.png"></a>
+[<img width="175" height="66" src="images/update-history.png">](#update)
+<a id="terms"><img width="175" height="66" src="images/conditions-terms.png"></a>
+<a id="policy"><img width="175" height="66" src="images/privacypolicy.png"></a>
+<a id="howintroduce"><img width="175" height="66" src="images/how-introduce.png"></a>
 
-更新履歴<br>
+<a id="update">更新履歴</a><br>
 2023/10/17 rankの追加、API復活<br>
 2023/10/19 stats、rankがNew Scratcherに対応していなかった問題を修正<br>
 2023/10/21 rankの順位がすべて○thで表示されていたものを1st、2nd、3rdなどと変更<br>
