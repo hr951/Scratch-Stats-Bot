@@ -1,6 +1,6 @@
 # Scratch-Stats-Bot
 
-Scratch Stats Botのコードです。<br>
+<img width="150" height="150" align="right" style="float: right; margin: 0 10px 0 0;" alt="music_disc" src="images/ssb-banner.png">
 
 更新履歴<br>
 2023/10/17 rankの追加、API復活<br>
