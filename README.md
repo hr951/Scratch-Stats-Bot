@@ -40,6 +40,8 @@ Scratchに特化したScratchユーザーのためにBotです。<br>
 2024/07/07 コマンド全般のエラー処理を修正<br>
 2024/07/08 statsでのエラーを他人に見えないように変更、projectの検索がURLからもできるように変更<br>
 
+<b><big><a id="terms">利用規約</a></big></b><br>
+
 <a href = "https://discord.com/api/oauth2/authorize?client_id=1078409540392992981&permissions=10448581814336&scope=bot%20applications.commands"><b>Botを導入する</b></a><br>
 <a href = "https://discord.gg/wRdXB8MBt6"><b>サポートサーバー</b></a><br>
 
