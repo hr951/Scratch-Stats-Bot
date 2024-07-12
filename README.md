@@ -2,7 +2,7 @@
 
 <img src="images/ssb-banner.png">
 
-<b><big>目次</big></b>
+<h2>目次</h2>
 
 [<img width="175" height="66" src="images/what-ssb.png">](#whatssb)
 [<img width="175" height="66" src="images/update-history.png">](#update)
