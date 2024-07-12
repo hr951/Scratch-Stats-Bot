@@ -4,6 +4,7 @@
 
 このBotはScratchにおける様々な情報を取得することができます。
 
+<img width="175" height="66" src="images/what-ssb.png"><img width="175" height="66" src="images/what-ssb.png">
 
 更新履歴<br>
 2023/10/17 rankの追加、API復活<br>
