@@ -1,6 +1,7 @@
 const { Client, GatewayIntentBits, Collection, ActivityType, Partials, ButtonBuilder, ButtonStyle, ActionRowBuilder, EmbedBuilder } = require("discord.js");
 const fs = require('node:fs');
 const path = require('node:path');
+
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -167,6 +168,9 @@ client.on('messageCreate', async message => {
     }
     if (!message.content.startsWith('!')) return
     if (message.channel.id === "1215637785873227887"){
+    if (message.content === '!restart'){
+      process.exit();
+    }
     if (message.content === '!setting') {
        const setting_status = await message.channel.messages.fetch("1253986110787555338");
        const setting_stats = await message.channel.messages.fetch("1253986139065421884");
