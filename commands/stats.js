@@ -48,7 +48,8 @@ module.exports = {
       const response_5 = await fetch(url_5);
       const json_5 = await response_5.json();
       
-      interaction.deferReply();
+      interaction.reply({ content: 'Now Loading...\n取得した情報はまもなく出力されます。\n※生成完了時メンションされます。', ephemeral: true });
+      const mention = interaction.user.id;
       
       do{        
       const url = `https://api.scratch.mit.edu/users/${username_2}/following/?limit=40&offset=${count_following}`;
@@ -111,10 +112,9 @@ module.exports = {
       var pro_title = json_6.title;
       var pro_thumbnail = json_6.image;
       }else{
-        var pro_title = "NotFound";
+        var pro_title = "不明 / NotFound";
         var pro_thumbnail = "https://cdn2.scratch.mit.edu/get_image/project/1042518320_480x360.png";
         var pro_id = "1042518320";
-        
       }
       
       const response_8 = await fetch(`https://scratch.mit.edu/users/${username}`);
@@ -124,7 +124,6 @@ module.exports = {
         var title = `${username}'s Stats`
       }
       
-      
       if(json_2.scratchteam){
         var status = "Scratch Team";
       }else{
@@ -132,22 +131,22 @@ module.exports = {
       }
 
       if (!followers) {
-        followers = "Not Found";
+        followers = "不明 / NotFound";
       }
       if (!followings) {
-        var followings = "Not Found";
+        var followings = "不明 / NotFound";
       }
       if (!projects) {
-        var projects = "Not Found";
+        var projects = "不明 / NotFound";
       }
       if (!hearts) {
-        var hearts = "Not Found";
+        var hearts = "不明 / NotFound";
       }
       if (!stars) {
-        var stars = "Not Found";
+        var stars = "不明 / NotFound";
       }
       if (!views) {
-        var views = "Not Found";
+        var views = "不明 / NotFound";
       }
       var joined_time = joined.substr(joined.indexOf('T')+1);
       var joined_time = joined_time.substr(0, joined_time.indexOf('.'));
@@ -159,54 +158,34 @@ module.exports = {
         .setURL(`https://scratch.mit.edu/users/${username}`)
         .addFields(
           {
-            name: "Status",
+            name: "ステータス",
             value: `${status}`,
             inline: true
           },
           {
-            name: "Country",
+            name: "国・地域",
             value: `${country}`,
             inline: true
           },
           {
-            name: "Joined (Y/M/D)",
+            name: "参加日 (JST)",
             value: `${joined}\n${joined_time}`,
             inline: true
           },
           {
-            name: "Follower Count",
-            value: `${followers}`,
+            name: "👤フォロー関係",
+            value: `**フォロワー**：${followers}\n**フォロー中**：${followings}`,
             inline: true
           },
           {
-            name: "Following Count",
-            value: `${followings}`,
+            name: "プロジェクト関係",
+            value: `**プロジェクト数**：${projects}\n👀：${views}\n⭐：${stars}\n❤️：${hearts}`,
             inline: true
           },
           {
-            name: "Project Count",
-            value: `${projects}`,
-            inline: true
-          },
-          {
-            name: "Stars",
-            value: `${stars}`,
-            inline: true
-          },
-          {
-            name: "Hearts",
-            value: `${hearts}`,
-            inline: true
-          },
-          {
-            name: "Views",
-            value: `${views}`,
-            inline: true
-          },
-          {
-            name: "Featured Project",
+            name: "注目のプロジェクト",
             value: `**[${pro_title}](https://scratch.mit.edu/projects/${pro_id})**  (${pro_id})`,
-            inline: true
+            inline: false
           },
         )
         .setThumbnail(`https://cdn2.scratch.mit.edu/get_image/user/${id}_90x90.png`)
@@ -218,15 +197,15 @@ module.exports = {
         })
         .setTimestamp();
       
-      //await interaction.editReply("Loading Completed !")
-      await interaction.editReply({ embeds: [embed] })
+      await interaction.channel.send({ content: `<@${mention}> __@${username_2}__の情報を生成しました。`, embeds: [embed] });
+      //await interaction.editReply({ embeds: [embed] })
 
     } catch (error) {
       // エラーが発生したらコンソールに出力
       console.error(error);
 
       // エラーメッセージを返信
-      await interaction.editReply({ content: 'Error\nError code : ScratchAPIから情報を取得できません。\n時間を空けて再度お試しください。', ephemeral: true });
+      await interaction.reply({ content: 'Error\nError code : ScratchAPIから情報を取得できません。\n時間を空けて再度お試しください。', ephemeral: true });
     }
   },
 
