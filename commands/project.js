@@ -22,7 +22,6 @@ module.exports = {
 }
     
     const check = containsOnlyNumbers(id);
-    console.log(check)
     
     if(check === false){
       const match = id_2.match(/projects\/(\d+)/);
@@ -34,7 +33,6 @@ module.exports = {
     }}
 
     const url = `https://api.scratch.mit.edu/projects/${id_2}`;
-    console.log(id_2)
 
     try {
       // ユーザー情報を取得するリクエストを送信
@@ -72,12 +70,12 @@ module.exports = {
       var shared_time = shared_time.substr(0, shared_time.indexOf('.'));
       
       if(!json.remix.root){
-        var remixroot = "NotFound";
+        var remixroot = "不明 / NotFound";
       }else{
         var remixroot = `__[RootProject](https://scratch.mit.edu/projects/${root}/)__`;
       }
       if(!json.remix.parent){
-        var remixparent = "NotFound";
+        var remixparent = "不明 / NotFound";
       }else{
         var remixparent = `__[ParentProject](https://scratch.mit.edu/projects/${parent}/)__`;
       }
@@ -87,52 +85,52 @@ module.exports = {
         .setURL(`https://scratch.mit.edu/projects/${id}/`)
         .addFields(
           {
-            name: "Author",
+            name: "作者",
             value: `__[@${username}](https://scratch.mit.edu/users/${username}/)__`,
             inline: false
           },
           {
-            name: "Views",
-            value: `${view}`,
+            name: `👀：${view}`,
+            value: ` `,
             inline: true
           },
           {
-            name: "Loves",
-            value: `${heart}`,
+            name: `❤️：${heart}`,
+            value: ` `,
             inline: true
           },
           {
-            name: "Favorites",
-            value: `${star}`,
+            name: `⭐：${star}`,
+            value: ` `,
             inline: true
           },
           {
-            name: "Remixes",
+            name: "リミックス数",
             value: `${remix}`,
             inline: true
           },
           {
-            name: "RemixRoot",
+            name: "総リミックス元",
             value: remixroot,
             inline: true
           },
           {
-            name: "RemixParent",
+            name: "リミックス元",
             value: remixparent,
             inline: true
           },
           {
-            name: "Created(Y/M/D)",
+            name: "作成日 (JST)",
             value: `${created}\n${created_time}`,
             inline: true
           },
           {
-            name: "LastModified(Y/M/D)",
+            name: "最終更新日 (JST)",
             value: `${modified}\n${modified_time}`,
             inline: true
           },
           {
-            name: "Shared(Y/M/D)",
+            name: "共有日 (JST)",
             value: `${shared}\n${shared_time}`,
             inline: true
           },
