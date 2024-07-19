@@ -173,7 +173,7 @@ module.exports = {
             inline: true
           },
           {
-            name: "👤フォロー関係",
+            name: "フォロー関係",
             value: `**フォロワー**：${followers}\n**フォロー中**：${followings}`,
             inline: true
           },
