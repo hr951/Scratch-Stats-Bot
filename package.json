@@ -13,9 +13,6 @@
   "engines": {
     "node": "18.x"
   },
-  "repository": {
-    "url": "https://glitch.com/edit/#!/discord-js-v14"
-  },
   "license": "MIT",
   "keywords": [
     "node",
