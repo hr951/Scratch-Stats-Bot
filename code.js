@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, Collection, ActivityType, Partials, ButtonBuilder, ButtonStyle, ActionRowBuilder, EmbedBuilder } = require("discord.js");
+const { Client, GatewayIntentBits, Collection, ActivityType, Partials, ButtonBuilder, ButtonStyle, ActionRowBuilder, EmbedBuilder, ModalBuilder, TextInputBuilder } = require("discord.js");
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -19,7 +19,7 @@ const client = new Client({
 const token = process.env['DISCORD_BOT_TOKEN']
 
 client.on('ready', () => {
-  client.channels.cache.get("1215637785873227887").send("!setting")
+  //client.channels.cache.get("1215637785873227887").send("!setting")
   var now_unix = new Date().getTime();
   const unix_12 = now_unix + 12 * 3600 * 1000;
   const unix = String(unix_12).slice(0,-3);
@@ -55,31 +55,52 @@ for (const file of commandFiles) {
 }
 
 client.on('interactionCreate', async interaction => {
+  const thumbnail = interaction.client.user.displayAvatarURL();
   if (interaction.isButton()){
-    const dm_del_msg = new EmbedBuilder()
-  .addFields(
-    {
-      name: "メッセージを削除しました。",
-      value: ` `,
-      inline: true
-    },
-    )
-  .setColor("#855DD7");
-    
-    try{
-    const dm_del_chan = await interaction.client.channels.fetch(process.env.DM_ID);
-    const dm_del_msg = await dm_del_chan.messages.fetch(interaction.customId);
-    dm_del_msg.delete();
-    const dm_from_id = interaction.message.id;
-    const dm_from_ch_id = interaction.channelId;
-    const dm_from_chdel = await interaction.client.channels.fetch(dm_from_ch_id);
-    const dm_from_del = await dm_from_chdel.messages.fetch(dm_from_id);
-    await interaction.reply("削除しました。")
-    dm_from_del.delete();
-    } catch (error) {
-      await interaction.reply("エラーが発生しました。\n既に削除されている可能性があります。")
-      console.error(error)}
-  }
+    const modal = new ModalBuilder()
+ 				.setTitle("報告・提案・催促")
+ 				.setCustomId("report_submit");
+ 			const TextInput_1 = new TextInputBuilder()
+ 				.setLabel("題名を入力してください。")
+ 				.setCustomId("title")
+ 				.setStyle("Short")
+        .setPlaceholder(" ")
+ 				.setMaxLength(100)
+ 				.setMinLength(2)
+ 				.setRequired(true);
+    const TextInput_2 = new TextInputBuilder()
+ 				.setLabel("内容を入力してください。")
+ 				.setCustomId("content")
+ 				.setStyle("Paragraph")
+        .setPlaceholder(" ")
+ 				.setMaxLength(1000)
+ 				.setMinLength(2)
+ 				.setRequired(true);
+ 			const ActionRow = new ActionRowBuilder().setComponents(TextInput_1);
+      const ActionRow_2 = new ActionRowBuilder().setComponents(TextInput_2);
+ 			modal.setComponents(ActionRow, ActionRow_2);
+ 			return interaction.showModal(modal);
+  } else if (interaction.isModalSubmit()){
+ 		if (interaction.customId == "report_submit"){
+ 			const content = interaction.fields.getTextInputValue("content");
+      const title = interaction.fields.getTextInputValue("title");
+      await interaction.reply({ content: `**${title}**を送信しました。`, ephemeral: true })
+      client.channels.cache.get(process.env.log_ID).send({ embeds: [
+ 					new EmbedBuilder()
+            .setTitle(title)
+            .setDescription(`使用者：<@${interaction.user.id}>`)
+ 						.addFields({
+              name : `**${content}**`,
+              value : " "
+            })
+            .setColor("#855DD7")
+         .setFooter({
+        text: "Made by Scratch Stats Bot",
+        iconURL: thumbnail,
+      })
+      .setTimestamp()
+ 				] })
+    }}
   if (!interaction.isChatInputCommand()) return;
 
   const command = interaction.client.commands.get(interaction.commandName);
@@ -99,73 +120,25 @@ client.on('interactionCreate', async interaction => {
 
 
 client.on('messageCreate', async message => {
-  if (message.channel.type === 1 && !message.author.bot) {
-    if(message.author.id === process.env.My_ID){
-      if(message.content.slice(0, 1) === "!"){
-        const str = message.content.slice(1);
-        const id = str.substr(0, str.indexOf(' '));
-        const msg_to = str.substr(str.indexOf(' ') + 1);
-        if(id){
-          if(msg_to){
-            if (msg_to.length > 200){
-              await message.reply("メッセージの送信中にエラーが発生しました。\nメッセージは200文字以内で送信してください。");
-              return;
-              } else {
-                try {
-                    await client.users.cache.get(id).send(`${msg_to}`);
-                    await message.react("✅");
-                      } catch (error) {
-                        await message.reply("メッセージの送信中にエラーが発生しました。\n!<ID> <MSG>で記入してください。");
-                        await message.react("❌");
-                        console.error('メッセージの送信中にエラーが発生しました:\n', error);
-                        return;
-                                        }
-                       }
-          }
-        }else{
-          await message.reply("!<ID> <MSG>で記入してください。")
-        }
-      }
-      return;
-    }
-    const dm_user = message.author.id;
-    const dm_msg = message.content;
-    const dm_id = message.id;
-    if (dm_msg.length > 200){
-      await message.reply("メッセージの送信中にエラーが発生しました。\nメッセージは200文字以内で送信してください。");
-      return;
-    } else {
-    try {
-          const sent_msg = await client.users.cache.get(process.env.My_ID).send(`From <@${dm_user}>(${dm_user})\n**${dm_msg}**`);
-          global.msg_id = sent_msg.id; 
-        } catch (error) {
-            await message.channel.send("メッセージの送信中にエラーが発生しました。\n定期再起動中またはメッセージが長すぎる可能性があります。");
-            console.error('メッセージの送信中にエラーが発生しました:\n', error);
-          return;
-        }
-    }
+  /*if(message.content === "report"){
     const Button = new ButtonBuilder()
-		.setCustomId(`${global.msg_id}`)
+		.setCustomId(`report`)
 		.setStyle(ButtonStyle.Primary)
-		.setLabel("削除する")
-		.setEmoji("🗑️");
+		.setLabel("報告・提案・催促")
+		.setEmoji("📩");
     
-    const dm_emb = new EmbedBuilder()
+    const report_emb = new EmbedBuilder()
   .addFields(
     {
-      name: " ",
-      value: `<@${process.env.My_ID}> に\n「**${dm_msg}**」\nを送信しました。\n取り消す場合は下のボタンを押してください。`,
+      name: "お問い合わせ",
+      value: `運営への問い合わせに使用してください。\nどんなことでもお気軽に本機能を使用してください。\nサーバールールの違反等もこの機能を使用してください。`,
       inline: true
     },
     )
   .setColor("#855DD7");
-    
-        try {
-            await message.reply({ embeds: [dm_emb], components: [new ActionRowBuilder().setComponents(Button)]});
-        } catch (error) {
-            console.error('メッセージの返信中にエラーが発生しました:\n', error);
-        }
-    }
+  message.channel.send({ embeds: [report_emb], components: [new ActionRowBuilder().setComponents(Button)]});
+    }*/
+  
     if (!message.content.startsWith('!')) return
     if (message.channel.id === "1215637785873227887"){
     if (message.content === '!restart'){
