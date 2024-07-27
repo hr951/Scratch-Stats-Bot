@@ -1,4 +1,4 @@
-[<img src="images/ssb-banner.png">]
+[<img src="images/ssb-banner.png">](#)
 
 <h2>目次</h2>
 
