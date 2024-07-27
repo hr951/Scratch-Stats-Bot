@@ -2,10 +2,10 @@
 
 <h2>目次</h2>
 
-[<img width="175" height="66" src="images/what-ssb.png">](#whatssb) 
-[<img width="175" height="66" src="images/update-history.png">](#update) 
-[<img width="175" height="66" src="images/conditions-terms.png">](#terms) 
-[<img width="175" height="66" src="images/privacypolicy.png">](#policy) 
+[<img width="175" height="66" src="images/what-ssb.png">](#whatssb)
+[<img width="175" height="66" src="images/update-history.png">](#update)
+[<img width="175" height="66" src="images/conditions-terms.png">](#terms)
+[<img width="175" height="66" src="images/privacypolicy.png">](#policy)
 [<img width="175" height="66" src="images/how-invite.png">](#howinvite)
 
 <h2><a id="whatssb">Scratch Stats Bot とは</a></h2><br>
