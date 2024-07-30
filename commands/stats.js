@@ -103,6 +103,16 @@ module.exports = {
       var username = json_2.username;
       var country = json_2.profile.country;
       var joined = json_2.history.joined;
+      const unix = Date.parse(joined) / 1000 + 9 * 3600
+      const date = new Date(unix * 1000);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+      const seconds = date.getSeconds();
+      var joined = `${year}/${month}/${day}`;
+      var joined_time = `${hours}:${minutes}:${seconds}`;
       var pro_id = json_5.featured_project;
       
       const url_6 = `https://api.scratch.mit.edu/projects/${pro_id}`;
@@ -148,10 +158,6 @@ module.exports = {
       if (!views) {
         var views = "不明 / NotFound";
       }
-      var joined_time = joined.substr(joined.indexOf('T')+1);
-      var joined_time = joined_time.substr(0, joined_time.indexOf('.'));
-      var joined = joined.substr(0, joined.indexOf('T'));
-      var joined = joined.replace(/-/g, "/");
 
       const embed = new EmbedBuilder()
         .setTitle(title)
