@@ -56,18 +56,22 @@ module.exports = {
       var root = json.remix.root;
       var parent = json.remix.parent;
       
-      var created = create.substr(0, create.indexOf('T'));
-      var created = created.replace(/-/g, "/");
-      var created_time = create.substr(create.indexOf('T')+1);
-      var created_time = created_time.substr(0, created_time.indexOf('.'));
-      var modified = modify.substr(0, modify.indexOf('T'));
-      var modified = modified.replace(/-/g, "/");
-      var modified_time = modify.substr(modify.indexOf('T')+1);
-      var modified_time = modified_time.substr(0, modified_time.indexOf('.'));
-      var shared = share.substr(0, share.indexOf('T'));
-      var shared = shared.replace(/-/g, "/");
-      var shared_time = share.substr(share.indexOf('T')+1);
-      var shared_time = shared_time.substr(0, shared_time.indexOf('.'));
+      function unixtodate(UTC) {
+    const unix = Date.parse(UTC) / 1000 + 9 * 3600
+    const date = new Date(unix * 1000); // UNIXタイムスタンプをミリ秒単位で指定
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1; // 月は0から始まるため+1する
+    const day = date.getDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+
+    // フォーマット化した日時を返す
+    return `${year}/${month}/${day}\n${hours}:${minutes}:${seconds}`;
+    }
+      var created = unixtodate(create);
+      var modified = unixtodate(modify);
+      var shared = unixtodate(share);
       
       if(!json.remix.root){
         var remixroot = "不明 / NotFound";
@@ -121,17 +125,17 @@ module.exports = {
           },
           {
             name: "作成日 (JST)",
-            value: `${created}\n${created_time}`,
+            value: `${created}`,
             inline: true
           },
           {
             name: "最終更新日 (JST)",
-            value: `${modified}\n${modified_time}`,
+            value: `${modified}`,
             inline: true
           },
           {
             name: "共有日 (JST)",
-            value: `${shared}\n${shared_time}`,
+            value: `${shared}`,
             inline: true
           },
         )
