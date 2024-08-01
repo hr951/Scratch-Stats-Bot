@@ -10,7 +10,7 @@
 
 <h2><a id="whatssb">Scratch Stats Bot とは</a></h2><br>
 Scratchに特化したScratchユーザーのためのDiscord Botです。<br>
-現時点で多くのコマンドを有しています。<br>
+オープンソースなので安心して使用できます。<br>
 動作に特別な権限は必要ありません。<br>
 いつでも気軽に<a href ="https://discord.gg/wRdXB8MBt6">サポートサーバー</a>で質問や要望を出してください！
 
