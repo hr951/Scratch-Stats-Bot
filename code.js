@@ -19,7 +19,7 @@ const client = new Client({
 const token = process.env['DISCORD_BOT_TOKEN']
 
 client.on('ready', () => {
-  //client.channels.cache.get("1215637785873227887").send("!setting")
+  client.channels.cache.get("1215637785873227887").send("!setting")
   var now_unix = new Date().getTime();
   const unix_12 = now_unix + 12 * 3600 * 1000;
   const unix = String(unix_12).slice(0,-3);
@@ -55,52 +55,6 @@ for (const file of commandFiles) {
 }
 
 client.on('interactionCreate', async interaction => {
-  const thumbnail = interaction.client.user.displayAvatarURL();
-  if (interaction.isButton()){
-    const modal = new ModalBuilder()
- 				.setTitle("報告・提案・催促")
- 				.setCustomId("report_submit");
- 			const TextInput_1 = new TextInputBuilder()
- 				.setLabel("題名を入力してください。")
- 				.setCustomId("title")
- 				.setStyle("Short")
-        .setPlaceholder(" ")
- 				.setMaxLength(100)
- 				.setMinLength(2)
- 				.setRequired(true);
-    const TextInput_2 = new TextInputBuilder()
- 				.setLabel("内容を入力してください。")
- 				.setCustomId("content")
- 				.setStyle("Paragraph")
-        .setPlaceholder(" ")
- 				.setMaxLength(1000)
- 				.setMinLength(2)
- 				.setRequired(true);
- 			const ActionRow = new ActionRowBuilder().setComponents(TextInput_1);
-      const ActionRow_2 = new ActionRowBuilder().setComponents(TextInput_2);
- 			modal.setComponents(ActionRow, ActionRow_2);
- 			return interaction.showModal(modal);
-  } else if (interaction.isModalSubmit()){
- 		if (interaction.customId == "report_submit"){
- 			const content = interaction.fields.getTextInputValue("content");
-      const title = interaction.fields.getTextInputValue("title");
-      await interaction.reply({ content: `**${title}**を送信しました。`, ephemeral: true })
-      client.channels.cache.get(process.env.log_ID).send({ embeds: [
- 					new EmbedBuilder()
-            .setTitle(title)
-            .setDescription(`使用者：<@${interaction.user.id}>`)
- 						.addFields({
-              name : `**${content}**`,
-              value : " "
-            })
-            .setColor("#855DD7")
-         .setFooter({
-        text: "Made by Scratch Stats Bot",
-        iconURL: thumbnail,
-      })
-      .setTimestamp()
- 				] })
-    }}
   if (!interaction.isChatInputCommand()) return;
 
   const command = interaction.client.commands.get(interaction.commandName);
@@ -120,24 +74,6 @@ client.on('interactionCreate', async interaction => {
 
 
 client.on('messageCreate', async message => {
-  /*if(message.content === "report"){
-    const Button = new ButtonBuilder()
-		.setCustomId(`report`)
-		.setStyle(ButtonStyle.Primary)
-		.setLabel("報告・提案・催促")
-		.setEmoji("📩");
-    
-    const report_emb = new EmbedBuilder()
-  .addFields(
-    {
-      name: "お問い合わせ",
-      value: `運営への問い合わせに使用してください。\nどんなことでもお気軽に本機能を使用してください。\nサーバールールの違反等もこの機能を使用してください。`,
-      inline: true
-    },
-    )
-  .setColor("#855DD7");
-  message.channel.send({ embeds: [report_emb], components: [new ActionRowBuilder().setComponents(Button)]});
-    }*/
   
     if (!message.content.startsWith('!')) return
     if (message.channel.id === "1215637785873227887"){
