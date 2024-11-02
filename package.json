@@ -1,20 +1,25 @@
 {
-  "name": "Scratch Stats Bot Code",
+  "name": "Discord-js-v14-template-for-glitch",
   "version": "14",
-  "description": "It is SSBs code",
+  "description": "It is template of Discord.js v14.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "discord.js": "^14.15.3",
+    "discord.js": "^14.13.0",
     "node-fetch": "^2.7.0"
   },
   "engines": {
-    "node": "18.x"
+    "node": "16.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/discord-js-v14-template-glitch"
   },
   "license": "MIT",
   "keywords": [
     "node",
+    "glitch",
+    "template"
   ]
 }
