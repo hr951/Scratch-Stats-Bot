@@ -87,7 +87,7 @@ client.on('messageCreate', async message => {
        const setting_explore = await message.channel.messages.fetch("1253986178538012714");
        const setting_info = await message.channel.messages.fetch("1253986198633058365");
        const setting_ping = await message.channel.messages.fetch("1253986215976505344");
-       const setting_search = await message.channel.messages.fetch("1253986237698543646");
+       const setting_search = await message.channel.messages.fetch("1329784353127006300");
        const reply = await message.reply("設定が完了しました。");
        const delset = await message.channel.messages.fetch({after : "1215672856076222505"});
        //message.channel.bulkDelete();      
