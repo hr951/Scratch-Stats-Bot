@@ -49,6 +49,7 @@ module.exports = {
         .then(response => response.json())
       
       if(type === "projects"){
+        try {
       // ユーザー情報から必要なデータを取得
       let      image = json[0].image;
       let     title1 = json[0].title;
@@ -225,15 +226,22 @@ module.exports = {
         })
         .setTimestamp();
 
-        await interaction.reply({ embeds: [embed] })
+        await interaction.reply({ embeds: [embed] });
+          
+          } catch(error) {
+          console.error(error);
+          interaction.reply({ content: `傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。`, ephemeral: true });
+          return;
+        }
 
       }else{
+        try{
       let      image_st = json[0].image;
       let     title1_st = json[0].title;
       let        id1_st = json[0].id;
       var      created1 = json[0].history.created;
       var     modified1 = json[0].history.modified;
-
+          
       var created1_time = created1.substr(created1.indexOf('T')+1);
       var created1_time = created1_time.substr(0, created1_time.indexOf('.'));
       var created1 = created1.substr(0, created1.indexOf('T'));
@@ -309,8 +317,7 @@ module.exports = {
       const url_4 = `https://api.scratch.mit.edu/studios/${id3_st}/`;
       const url_5 = `https://api.scratch.mit.edu/studios/${id4_st}/`;
       const url_6 = `https://api.scratch.mit.edu/studios/${id5_st}/`;
-
-      try{
+          
         const response_2 = await fetch(url_2);
         const json_2 = await response_2.json();
          var followers1_st = json_2.stats.followers;
@@ -340,10 +347,6 @@ module.exports = {
         followers1_st = "NotFound";
         managers1_st = "NotFound";
       }
-    }catch (error) {
-      // エラーが発生したらコンソールに出力
-      console.error(error + "\nなんでエラー吐いてんの？おかしいやんAPIの情報やで？");
-    }
 
       var embed = new EmbedBuilder()
         .setTitle(`${type} / ${search} / ${mode}`)
@@ -485,13 +488,18 @@ module.exports = {
         .setTimestamp();
 
         await interaction.reply({ embeds: [embed] })
+          } catch(error) {
+          console.error(error);
+          interaction.reply({ content: `傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。`, ephemeral: true });
+            return;
+        }
       };
 
     } catch (error) {
       // エラーが発生したらコンソールに出力
       console.error(error);
       // エラーメッセージを返信
-      await interaction.reply({ content: `APIから取得できませんでした。\n検索ワード「${search}」は存在しない可能性があります。`, ephemeral: true });
+      interaction.reply({ content: `APIから取得できませんでした。\n検索ワード「${search}」は存在しない可能性があります。`, ephemeral: true });
 
     }
   },
