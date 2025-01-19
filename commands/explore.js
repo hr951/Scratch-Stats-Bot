@@ -24,14 +24,14 @@ module.exports = {
 
     try {
       
-      //interaction.deferReply();
+      interaction.deferReply();
       
       // ユーザー情報を取得するリクエストを送信
       const response = await fetch(url);
       const json = await response.json();
       // ユーザー情報が存在しなければエラーメッセージを返す
       if (json.error) {
-        interaction.reply({ content: `傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。`, ephemeral: true });
+        await interaction.editReply({ content: `傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。`, ephemeral: true });
         return;
       }
 
@@ -42,7 +42,7 @@ module.exports = {
         // JSONデータをコンソールに出力する
         //.then(data => console.log(data));
 
-
+      try {
       // ユーザー情報から必要なデータを取得
       const image = json[0].image;
       const title1 = json[0].title;
@@ -168,13 +168,19 @@ module.exports = {
           iconURL: thumbnail,
         })
         .setTimestamp();
-      await interaction.reply({ embeds: [embed] })
+      await interaction.reply({ embeds: [embed] });
+        
+        } catch(error) {
+          console.error(error);
+          await interaction.editReply({ content: `傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。`, ephemeral: true });
+          return;
+        }
 
     } catch (error) {
       // エラーが発生したらコンソールに出力
       console.error(error);
       // エラーメッセージを返信
-      await interaction.reply({ content: 'APIから傾向を取得できませんでした。', ephemeral: true });
+      await interaction.editReply({ content: 'APIから傾向を取得できませんでした。', ephemeral: true });
 
     }
   },
