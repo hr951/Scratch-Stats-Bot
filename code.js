@@ -55,6 +55,15 @@ for (const file of commandFiles) {
 }
 
 client.on('interactionCreate', async interaction => {
+  if (interaction.isButton()){
+    if(interaction.customId == "show_explore"){
+    interaction.reply({embeds:[interaction.message.embeds[0]]});
+    return;
+    } else {
+      interaction.reply({content:"使用不可のボタンです。",ephemeral:true});
+      return;
+    }
+  }
   if (!interaction.isChatInputCommand()) return;
 
   const command = interaction.client.commands.get(interaction.commandName);
