@@ -1,5 +1,6 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const fetch = require("node-fetch")
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, } = require('discord.js');
+const fetch = require("node-fetch");
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -24,7 +25,7 @@ module.exports = {
 
     try {
       
-      interaction.deferReply();
+      interaction.deferReply({ephemeral: true});
       
       // ユーザー情報を取得するリクエストを送信
       const response = await fetch(url);
@@ -41,6 +42,8 @@ module.exports = {
         .then(response => response.json())
         // JSONデータをコンソールに出力する
         //.then(data => console.log(data));
+      await sleep(500);
+      //0.5秒待つ
 
       try {
       // ユーザー情報から必要なデータを取得
@@ -168,7 +171,15 @@ module.exports = {
           iconURL: thumbnail,
         })
         .setTimestamp();
-      await interaction.reply({ embeds: [embed] });
+        
+        const Button = new ButtonBuilder()
+		.setCustomId(`show_explore`)
+		.setStyle(ButtonStyle.Primary)
+		.setLabel("結果を公開する")
+		.setEmoji("📤");
+        
+      await interaction.editReply({ embeds: [embed] ,ephemeral: true , components: [new ActionRowBuilder().setComponents(Button)]});
+        
         
         } catch(error) {
           console.error(error);
