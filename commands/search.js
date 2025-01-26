@@ -41,7 +41,7 @@ module.exports = {
       const json = await response.json();
       // ユーザー情報が存在しなければエラーメッセージを返す
       if (json.error) {
-        interaction.reply({ content: `傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。`, ephemeral: true });
+        interaction.reply({ content: `検索に失敗しました。\n__[Scratchの検索機能](https://scratch.mit.edu/search/${type}?q=${search})__に何らかの異常が発生している可能性があります。\nしばらく経ってからもう一度お試しください。`, ephemeral: true });
         return;
       }
 
@@ -88,7 +88,7 @@ module.exports = {
       let favorites5 = json[4].stats.favorites;
 
       var embed = new EmbedBuilder()
-        .setTitle(`${type} / ${search} / ${mode}`)
+        .setTitle(`プロジェクト / ${search} / ${mode}`)
         .setURL(`https://scratch.mit.edu/search/${type}?mode=${mode}&q=${search}`)
         .addFields(
           {
@@ -230,7 +230,7 @@ module.exports = {
           
           } catch(error) {
           console.error(error);
-          interaction.reply({ content: `傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。`, ephemeral: true });
+          interaction.reply({ content: `検索に失敗しました。\n__[Scratchの検索機能](https://scratch.mit.edu/search/projects?q=${search})__に何らかの異常が発生している可能性があります。\nしばらく経ってからもう一度お試しください。`, ephemeral: true });
           return;
         }
 
@@ -349,7 +349,7 @@ module.exports = {
       }
 
       var embed = new EmbedBuilder()
-        .setTitle(`${type} / ${search} / ${mode}`)
+        .setTitle(`スタジオ / ${search} / ${mode}`)
         .setURL(`https://scratch.mit.edu/search/${type}?mode=${mode}&q=${search}`)
         .addFields(
           {
@@ -490,7 +490,7 @@ module.exports = {
         await interaction.reply({ embeds: [embed] })
           } catch(error) {
           console.error(error);
-          interaction.reply({ content: `傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。`, ephemeral: true });
+          interaction.reply({ content: `検索に失敗しました。\n__[Scratchの検索機能](https://scratch.mit.edu/search/studios?q=${search})__に何らかの異常が発生している可能性があります。\nしばらく経ってからもう一度お試しください。`, ephemeral: true });
             return;
         }
       };
@@ -499,7 +499,7 @@ module.exports = {
       // エラーが発生したらコンソールに出力
       console.error(error);
       // エラーメッセージを返信
-      interaction.reply({ content: `APIから取得できませんでした。\n検索ワード「${search}」は存在しない可能性があります。`, ephemeral: true });
+      interaction.reply({ content: `検索に失敗しました。\n検索ワード「${search}」は存在しない可能性があります。`, ephemeral: true });
 
     }
   },
