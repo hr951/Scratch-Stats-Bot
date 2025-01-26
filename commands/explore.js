@@ -32,7 +32,7 @@ module.exports = {
       const json = await response.json();
       // ユーザー情報が存在しなければエラーメッセージを返す
       if (json.error) {
-        await interaction.editReply({ content: `傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。`, ephemeral: true });
+        await interaction.editReply({ content: `傾向を取得できませんでした。\n__[Scratchの傾向](https://scratch.mit.edu/explore/projects/all)__に何らかの異常が発生している可能性があります。\nしばらく経ってからもう一度お試しください。`, ephemeral: true });
         return;
       }
 
@@ -183,7 +183,7 @@ module.exports = {
         
         } catch(error) {
           console.error(error);
-          await interaction.editReply({ content: `傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。`, ephemeral: true });
+          await interaction.editReply({ content: `傾向を取得できませんでした。\n__[Scratchの傾向](https://scratch.mit.edu/explore/projects/all)__に何らかの異常が発生している可能性があります。\nしばらく経ってからもう一度お試しください。`, ephemeral: true });
           return;
         }
 
@@ -191,7 +191,7 @@ module.exports = {
       // エラーが発生したらコンソールに出力
       console.error(error);
       // エラーメッセージを返信
-      await interaction.editReply({ content: 'APIから傾向を取得できませんでした。', ephemeral: true });
+      await interaction.editReply({ content: '傾向を取得できませんでした。\n__**[サポートサーバー](https://discord.gg/wRdXB8MBt6)**__で報告してください。', ephemeral: true });
 
     }
   },
