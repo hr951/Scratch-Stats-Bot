@@ -27,6 +27,9 @@ module.exports = {
       
       interaction.deferReply({ephemeral: true});
       
+      await sleep(500);
+      //0.5秒待つ
+      
       // ユーザー情報を取得するリクエストを送信
       const response = await fetch(url);
       const json = await response.json();
@@ -42,8 +45,6 @@ module.exports = {
         .then(response => response.json())
         // JSONデータをコンソールに出力する
         //.then(data => console.log(data));
-      await sleep(500);
-      //0.5秒待つ
 
       try {
       // ユーザー情報から必要なデータを取得
@@ -76,12 +77,12 @@ module.exports = {
       const     loves4 = json[3].stats.loves;
       const favorites4 = json[3].stats.favorites;
 
-      const     title5 = json[4].title;
+      /*const     title5 = json[4].title;
       const        id5 = json[4].id;
       const  username5 = json[4].author.username;
       const     views5 = json[4].stats.views;
       const     loves5 = json[4].stats.loves;
-      const favorites5 = json[4].stats.favorites;
+      const favorites5 = json[4].stats.favorites;*/
 
       const embed = new EmbedBuilder()
         .setTitle(`Explore / 傾向`)
@@ -144,10 +145,11 @@ module.exports = {
           },
           {
             name: ` `,
-            value: `Made by __[${username4}](https://scratch.mit.edu/users/${username4}/)__\n**------------------------------------------------------**`,
+            value: `Made by __[${username4}](https://scratch.mit.edu/users/${username4}/)__`,
+            //value: `Made by __[${username4}](https://scratch.mit.edu/users/${username4}/)__\n**------------------------------------------------------**`,
             inline: false
           },
-          {
+          /*{
             name: ` `,
             value: `**[${title5}](https://scratch.mit.edu/projects/${id5}/)**  (${id5})`,
             inline: false
@@ -161,7 +163,7 @@ module.exports = {
             name: ` `,
             value: `Made by __[${username5}](https://scratch.mit.edu/users/${username5}/)__`,
             inline: false
-          },
+          },*/
         )
         .setThumbnail(`${image}`)
         //.setImage(`https://cdn2.scratch.mit.edu/get_image/user/${id}_90x90.png`)
