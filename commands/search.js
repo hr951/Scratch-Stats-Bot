@@ -1,5 +1,6 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const fetch = require("node-fetch")
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
+const fetch = require("node-fetch");
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -37,11 +38,16 @@ module.exports = {
     const url = `https://api.scratch.mit.edu/search/${type}?limit=5&offset=0&mode=${mode}&q=${search}`;
 
     try {
+      
+      interaction.deferReply({ephemeral: true});
+      
+      await sleep(500);
+      
       const response = await fetch(url);
       const json = await response.json();
       // ユーザー情報が存在しなければエラーメッセージを返す
       if (json.error) {
-        interaction.reply({ content: `検索に失敗しました。\n__[Scratchの検索機能](https://scratch.mit.edu/search/${type}?q=${search})__に何らかの異常が発生している可能性があります。\nしばらく経ってからもう一度お試しください。`, ephemeral: true });
+        interaction.editReply({ content: `検索に失敗しました。\n__[Scratchの検索機能](https://scratch.mit.edu/search/${type}?q=${search})__に何らかの異常が発生している可能性があります。\nしばらく経ってからもう一度お試しください。`, ephemeral: true });
         return;
       }
 
@@ -225,12 +231,18 @@ module.exports = {
           iconURL: thumbnail,
         })
         .setTimestamp();
+          
+        const Button = new ButtonBuilder()
+		      .setCustomId(`show_search`)
+		      .setStyle(ButtonStyle.Primary)
+		      .setLabel("結果を公開する")
+		      .setEmoji("📤");
 
-        await interaction.reply({ embeds: [embed] });
+        await interaction.editReply({ embeds: [embed], components: [new ActionRowBuilder().setComponents(Button)]});
           
           } catch(error) {
           console.error(error);
-          interaction.reply({ content: `検索に失敗しました。\n__[Scratchの検索機能](https://scratch.mit.edu/search/projects?q=${search})__に何らかの異常が発生している可能性があります。\nしばらく経ってからもう一度お試しください。`, ephemeral: true });
+          await interaction.editReply({ content: `検索に失敗しました。\n__[Scratchの検索機能](https://scratch.mit.edu/search/projects?q=${search})__に何らかの異常が発生している可能性があります。\nしばらく経ってからもう一度お試しください。`, ephemeral: true });
           return;
         }
 
@@ -486,11 +498,17 @@ module.exports = {
           iconURL: thumbnail,
         })
         .setTimestamp();
+          
+        const Button = new ButtonBuilder()
+		      .setCustomId(`show_search`)
+		      .setStyle(ButtonStyle.Primary)
+		      .setLabel("結果を公開する")
+		      .setEmoji("📤");
 
-        await interaction.reply({ embeds: [embed] })
+        await interaction.editReply({ embeds: [embed] , components: [new ActionRowBuilder().setComponents(Button)]})
           } catch(error) {
           console.error(error);
-          interaction.reply({ content: `検索に失敗しました。\n__[Scratchの検索機能](https://scratch.mit.edu/search/studios?q=${search})__に何らかの異常が発生している可能性があります。\nしばらく経ってからもう一度お試しください。`, ephemeral: true });
+          await interaction.editReply({ content: `検索に失敗しました。\n__[Scratchの検索機能](https://scratch.mit.edu/search/studios?q=${search})__に何らかの異常が発生している可能性があります。\nしばらく経ってからもう一度お試しください。`, ephemeral: true });
             return;
         }
       };
@@ -499,7 +517,7 @@ module.exports = {
       // エラーが発生したらコンソールに出力
       console.error(error);
       // エラーメッセージを返信
-      interaction.reply({ content: `検索に失敗しました。\n検索ワード「${search}」は存在しない可能性があります。`, ephemeral: true });
+      await interaction.editReply({ content: `検索に失敗しました。\n検索ワード「${search}」は存在しない可能性があります。`, ephemeral: true });
 
     }
   },
