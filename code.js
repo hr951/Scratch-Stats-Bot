@@ -56,7 +56,7 @@ for (const file of commandFiles) {
 
 client.on('interactionCreate', async interaction => {
   if (interaction.isButton()){
-    if(interaction.customId == "show_explore"){
+    if(interaction.customId == "show_explore" || interaction.customId == "show_search"){
     interaction.reply({embeds:[interaction.message.embeds[0]]});
     return;
     } else {
