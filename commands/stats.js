@@ -1,5 +1,6 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const fetch = require("node-fetch")
+const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
+const fetch = require("node-fetch");
+const fs = require("fs");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -104,7 +105,11 @@ module.exports = {
         if (new_deleted_users_list){
         const guild = await interaction.client.guilds.fetch("1160122019619278898");
         const member = await guild.members.fetch("962670040795201557");
-        member.send("New Deleted Users List\n```json\n"+new_deleted_users_list+"```");
+          fs.writeFileSync('output.txt', new_deleted_users_list, 'utf8');
+
+        // テキストファイルを添付ファイルとして送信します
+        const attachment = new AttachmentBuilder('output.txt');
+        member.send({ content: 'New Deleted Users List:', files: [attachment] });
       }
       followers = allFollowers.length - notfollower;
       
