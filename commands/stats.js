@@ -27,6 +27,13 @@ module.exports = {
     var count_following = 0;
     var followings = 0;
     var notfollower = 0;
+    
+    const deleted_users = await fetch("https://raw.githubusercontent.com/hr951/Scratch-Stats-Bot/main/deleted_users.json");
+    const deleted_users_json = await deleted_users.json();
+    
+    function isUserDeleted(userId) {
+      return deleted_users_json.some(user => user.id === userId);
+    }
 
     const url_2 = `https://api.scratch.mit.edu/users/${username_2}`;
 
@@ -61,26 +68,46 @@ module.exports = {
       global.json_length = json.length;
       } while (global.json_length > 0);
       
+      var followers_test = {};
+      var allFollowers = [];
       do{
-      let notfollowercount = 0;
       const url_3 = `https://api.scratch.mit.edu/users/${username_2}/followers/?limit=40&offset=${count_follower}`;
 
       const response_3 = await fetch(url_3);
       const json_3 = await response_3.json();
-        count_follower += 40;
-      followers += json_3.length;
+      
+      var followers_test = json_3.map(user => ({
+        id: user.id,
+        username: user.username
+      })).filter(user => !isUserDeleted(user.id));
+
+      var allFollowers = [...allFollowers, ...followers_test];
+
+      count_follower += 40;
       global.json_3_length = json_3.length;
-        for (let i = 0; i < json_3.length; i++) {
-              let url_7 = `https://scratch.mit.edu/users/${json_3[notfollowercount].username}`;
-              const response_7 = await fetch(url_7);
-              notfollowercount++;
-              //console.log(response_7.status)
-              if(response_7.status === 404){
-                notfollower++;
-              }
-              }
       } while (global.json_3_length === 40);
-      followers -= notfollower;
+      
+      var notfollowercount = 0;
+      var combinedArray = [];
+      for (let i = 0; i < allFollowers.length; i++) {
+        let url_7 = `https://scratch.mit.edu/users/${allFollowers[notfollowercount].username}`;
+        const response_7 = await fetch(url_7);
+        notfollowercount++;
+        //console.log(response_7.status)
+        if(response_7.status === 404){
+          notfollower++;
+          var new_deleted_users = allFollowers[notfollowercount-1];
+          combinedArray.push(new_deleted_users);
+          var new_deleted_users_list = JSON.stringify(combinedArray);
+        }
+        }
+        if (new_deleted_users_list){
+        const guild = await interaction.client.guilds.fetch("1160122019619278898");
+        const member = await guild.members.fetch("962670040795201557");
+        member.send("New Deleted Users List\n```json\n"+new_deleted_users_list+"```");
+      }
+      followers = allFollowers.length - notfollower;
+      
       do{
       const url_4 = `https://api.scratch.mit.edu/users/${username_2}/projects?limit=40&offset=${count_project}`;
         count_stats = 0;
