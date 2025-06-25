@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "discord.js": "^14.13.0",
-    "node-fetch": "^2.7.0"
+    "node-fetch": "^2.7.0",
+    "axios": "^1.10.0",
+    "jsdom": "^26.1.0"
   },
   "engines": {
     "node": "16.x"
