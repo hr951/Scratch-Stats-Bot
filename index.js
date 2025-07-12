@@ -2,6 +2,8 @@ const { Client, GatewayIntentBits, Collection, ActivityType, Partials, ButtonBui
 const fs = require('node:fs');
 const path = require('node:path');
 
+require("./server.js");
+
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
