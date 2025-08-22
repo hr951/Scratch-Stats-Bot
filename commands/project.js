@@ -86,7 +86,7 @@ module.exports = {
       
       const embed = new EmbedBuilder()
         .setTitle(`${title}`)
-        .setURL(`https://scratch.mit.edu/projects/${id}/`)
+        .setURL(`https://scratch.mit.edu/projects/${id_2}/`)
         .addFields(
           {
             name: "作者",
